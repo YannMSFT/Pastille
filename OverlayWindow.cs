@@ -14,13 +14,7 @@ internal sealed class OverlayWindow : Window
     private readonly Grid surface = new();
     private readonly Canvas viewport = new() { ClipToBounds = true };
     private readonly Image image = new() { Stretch = Stretch.Fill };
-    private readonly TextBlock placeholder = new()
-    {
-        Text = Localization.Text("Placeholder"), TextAlignment = TextAlignment.Center,
-        Foreground = Brushes.White, VerticalAlignment = VerticalAlignment.Center, FontSize = 17,
-        TextWrapping = TextWrapping.Wrap
-    };
-    private readonly Grid content = new() { Background = new SolidColorBrush(Color.FromRgb(28, 38, 48)) };
+    private readonly Grid content = new() { Background = new SolidColorBrush(Color.FromRgb(0, 255, 0)) };
     private readonly Ellipse oval = new() { StrokeThickness = 2, IsHitTestVisible = false };
     private readonly Path rectangle = new() { StrokeThickness = 2, IsHitTestVisible = false };
     private readonly Thumb grip = new()
@@ -50,7 +44,6 @@ internal sealed class OverlayWindow : Window
         Width = settings.Width; Height = settings.Height;
         viewport.Children.Add(image);
         content.Children.Add(viewport);
-        content.Children.Add(placeholder);
         surface.Children.Add(content);
         surface.Children.Add(oval);
         surface.Children.Add(rectangle);
@@ -104,14 +97,12 @@ internal sealed class OverlayWindow : Window
     {
         var changed = image.Source != frame;
         image.Source = frame;
-        placeholder.Visibility = Visibility.Collapsed;
         if (changed) ApplyFraming();
     }
 
     public void ClearFrame()
     {
         image.Source = null;
-        placeholder.Visibility = Visibility.Visible;
     }
 
     public void ApplyAppearance()

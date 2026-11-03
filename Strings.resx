@@ -64,8 +64,6 @@ Allow desktop apps to access the camera in Windows settings.</value></data>
   <data name="TrayInitError" xml:space="preserve"><value>Windows cannot initialize the Pastille icon controls.</value></data>
   <data name="TrayCreateError" xml:space="preserve"><value>Cannot create the Pastille icon.</value></data>
   <data name="TrayRemoveError" xml:space="preserve"><value>Windows did not confirm removal of the Pastille icon.</value></data>
-  <data name="Placeholder" xml:space="preserve"><value>PASTILLE
-Webcam stopped</value></data>
   <data name="ResizeTip" xml:space="preserve"><value>Drag to resize</value></data>
   <data name="OverlayTitle" xml:space="preserve"><value>Pastille — webcam</value></data>
   <data name="ShowControls" xml:space="preserve"><value>Show controls</value></data>

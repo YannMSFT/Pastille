@@ -11,22 +11,23 @@ does not add an overlay to another application's camera feed.
 
 ## Install or update
 
-Download a ZIP from [Releases](https://github.com/YannMSFT/Pastille/releases)
-that matches your processor. Existing 0.5.2 release assets are:
+Download a ZIP from the [Pastille 0.5.3 release](https://github.com/YannMSFT/Pastille/releases/tag/v0.5.3)
+that matches your processor:
 
 | Archive | Windows PC |
 |---|---|
-| `Pastille-x64-0.5.2.zip` | Intel or AMD, 64-bit |
-| `Pastille-ARM64-0.5.2.zip` | ARM64, including Snapdragon |
+| [Pastille-x64-0.5.3.zip](https://github.com/YannMSFT/Pastille/releases/download/v0.5.3/Pastille-x64-0.5.3.zip) | Intel or AMD, 64-bit |
+| [Pastille-ARM64-0.5.3.zip](https://github.com/YannMSFT/Pastille/releases/download/v0.5.3/Pastille-ARM64-0.5.3.zip) | ARM64, including Snapdragon |
+| [Pastille-0.5.3-sources.zip](https://github.com/YannMSFT/Pastille/releases/download/v0.5.3/Pastille-0.5.3-sources.zip) | Source code and guides |
+| [Pastille-Guide-0.5.3.md](https://github.com/YannMSFT/Pastille/releases/download/v0.5.3/Pastille-Guide-0.5.3.md) | French user guide |
 
-These are the existing releases; the localization changes in this source tree
-require a new build and do not change previously published ZIPs.
+SHA-256 checksums for all release downloads are published as `SHA256SUMS.txt`
+alongside the release assets.
 
 Check **Settings > System > About > System type** if unsure. The releases target
 Windows 11 x64 and ARM64, not 32-bit x86. Prefer the native build for your CPU.
 
-1. Quit any running instance of Pastille or its predecessor, Visage, using its
-   notification-area icon.
+1. Quit any running instance of Pastille using its notification-area icon.
 2. Right-click the downloaded ZIP and choose **Extract All**. Do not run from
    inside the archive.
 3. Keep `Pastille.exe` in a folder of your choice and launch it.
@@ -51,8 +52,11 @@ Windows hides it.
 
 Click the icon, or right-click it and select **Settings…**. Select a webcam and
 click **Start webcam**. Use **Refresh** after connecting a device. The overlay is
-visible on startup, but the webcam is never activated automatically. A placeholder
-is shown until you start it. **Stop webcam** releases the camera.
+visible on startup, but the webcam is never activated automatically. Until the
+camera starts, and after it stops, the oval or rectangle displays solid chroma
+green (`#00FF00`) suitable for use as a green-screen background. The outline
+remains visible and the shape retains its normal clipping. **Stop webcam** releases
+the camera, clears the last frame and restores the green background.
 
 If access fails, check **Settings > Privacy & security > Camera** and allow
 desktop apps to access the camera. Device compatibility and camera sharing depend
@@ -90,7 +94,7 @@ Settings include:
   **Center overlay** moves the window to the center of the working area.
 
 The default framing fills the overlay without distorting the image. Zooming out
-below 100% or panning far can reveal the dark background. There is no automatic
+below 100% or panning far can reveal the green background. There is no automatic
 face tracking, background removal or cutout.
 
 ## Tray and quitting
@@ -124,9 +128,9 @@ Position, size, shape, mirroring, zoom, pan, outline, corner radius and webcam
 selection are saved in `%LOCALAPPDATA%\Pastille\settings.json`. Errors are logged
 to `%LOCALAPPDATA%\Pastille\errors.log`.
 
-If no Pastille settings exist, the application imports
-`%LOCALAPPDATA%\Visage\settings.json` once, preserving that original file.
-Pastille settings take priority on subsequent launches. Removed recording
+If no Pastille settings exist, the application imports preferences from the
+previous installation once, preserving the original settings file. Pastille
+settings take priority on subsequent launches. Removed recording
 preferences are ignored; existing videos are not modified or deleted. Changing
 the UI language does not rename JSON properties or change saved numeric values.
 
@@ -136,8 +140,8 @@ the UI language does not rename JSON properties or change saved numeric values.
   necessarily exclusive full-screen applications.
 - The preview is limited to 960 x 720 and about 25 frames per second, reusing
   its pixel buffer. Hiding the overlay does not suspend capture.
-- If another application owns **Ctrl+Shift+F9** (including an old Pastille or
-  Visage instance), settings show a translated conflict message. Close the
+- If another application owns **Ctrl+Shift+F9** (including another Pastille
+  instance), settings show a translated conflict message. Close the
   conflicting application and restart Pastille. The buttons and menus still
   work; holding the shortcut does not repeatedly toggle visibility.
 - The webcam is local, but other software may capture the visible overlay as
@@ -172,6 +176,8 @@ desktop. They do not activate the webcam or alter user preferences. They cover
 CPU architecture, branding, icon rendering, isolated legacy settings migration,
 validation and JSON round trips, framing, shape/mirror/resize, outline rendering,
 rounded corners, and close-to-tray/exit behavior.
+They also check the initial chroma-green fill, active video display, frame clearing
+on stop, both overlay shapes, clipping and outline rendering.
 
 Localization coverage checks all resource keys and format arguments in all five
 languages without silently accepting missing satellite resources, regional

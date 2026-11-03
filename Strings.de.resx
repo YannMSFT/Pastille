@@ -64,8 +64,6 @@ Erlauben Sie Desktop-Apps in den Windows-Einstellungen den Zugriff auf die Kamer
   <data name="TrayInitError" xml:space="preserve"><value>Windows kann die Steuerung des Pastille-Symbols nicht initialisieren.</value></data>
   <data name="TrayCreateError" xml:space="preserve"><value>Das Pastille-Symbol kann nicht erstellt werden.</value></data>
   <data name="TrayRemoveError" xml:space="preserve"><value>Windows hat die Entfernung des Pastille-Symbols nicht bestätigt.</value></data>
-  <data name="Placeholder" xml:space="preserve"><value>PASTILLE
-Webcam gestoppt</value></data>
   <data name="ResizeTip" xml:space="preserve"><value>Ziehen, um die Größe zu ändern</value></data>
   <data name="OverlayTitle" xml:space="preserve"><value>Pastille — Webcam</value></data>
   <data name="ShowControls" xml:space="preserve"><value>Steuerung anzeigen</value></data>
