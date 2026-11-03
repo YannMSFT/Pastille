@@ -9,9 +9,9 @@ The webcam stays on your PC. Pastille does not upload images, record video,
 capture the desktop, or access the microphone. It is not a virtual camera and
 does not add an overlay to another application's camera feed.
 
-![Pastille displaying a webcam overlay over the Windows desktop](docs/images/pastille-desktop-overlay.png)
+![Pastille's rectangular portrait overlay in the lower-left corner of a browser displaying Have I Been Pwned](docs/images/pastille-desktop-overlay.png)
 
-*Example: the movable, always-on-top webcam overlay stays visible over other applications.*
+*Example: a rectangular portrait overlay stays visible over a browser window.*
 
 ## Install or update
 
