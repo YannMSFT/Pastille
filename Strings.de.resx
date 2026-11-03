@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="ConfigurationTitle" xml:space="preserve"><value>Pastille — Einstellungen</value></data>
+  <data name="Tagline" xml:space="preserve"><value>Ihre Webcam über Ihren Anwendungen.</value></data>
+  <data name="WebcamHeading" xml:space="preserve"><value>WEBCAM</value></data>
+  <data name="StartCamera" xml:space="preserve"><value>Webcam aktivieren</value></data>
+  <data name="StopCamera" xml:space="preserve"><value>Webcam stoppen</value></data>
+  <data name="Refresh" xml:space="preserve"><value>Aktualisieren</value></data>
+  <data name="Privacy" xml:space="preserve"><value>Es werden keine Bilder über das Internet gesendet.</value></data>
+  <data name="OverlayHeading" xml:space="preserve"><value>EINBLENDUNG</value></data>
+  <data name="Oval" xml:space="preserve"><value>Oval</value></data>
+  <data name="Rectangle" xml:space="preserve"><value>Rechteck</value></data>
+  <data name="Mirror" xml:space="preserve"><value>Spiegelbild</value></data>
+  <data name="Outline" xml:space="preserve"><value>Umrandung</value></data>
+  <data name="ShowOutline" xml:space="preserve"><value>Umrandung anzeigen</value></data>
+  <data name="Thickness" xml:space="preserve"><value>Stärke</value></data>
+  <data name="PickColor" xml:space="preserve"><value>Farbe wählen…</value></data>
+  <data name="RectangleCorners" xml:space="preserve"><value>Abgerundete Ecken</value></data>
+  <data name="Radius" xml:space="preserve"><value>Radius</value></data>
+  <data name="RadiusHelp" xml:space="preserve"><value>0: rechtwinklige Ecken. Im Rechteckmodus verfügbar. Die Rundung ist auf die Hälfte der kürzesten Seite begrenzt.</value></data>
+  <data name="Framing" xml:space="preserve"><value>Gesichtsausschnitt</value></data>
+  <data name="Zoom" xml:space="preserve"><value>Zoom</value></data>
+  <data name="Horizontal" xml:space="preserve"><value>Horizontal</value></data>
+  <data name="Vertical" xml:space="preserve"><value>Vertikal</value></data>
+  <data name="ResetFraming" xml:space="preserve"><value>Ausschnitt zurücksetzen</value></data>
+  <data name="FramingHelp" xml:space="preserve"><value>Zoom und Ausschnitt verschieben das Bild innerhalb der Einblendung, ohne diese zu bewegen. Das Mausrad über der Einblendung passt ebenfalls den Zoom an.</value></data>
+  <data name="OverlaySize" xml:space="preserve"><value>Größe der Einblendung</value></data>
+  <data name="Width" xml:space="preserve"><value>Breite</value></data>
+  <data name="Height" xml:space="preserve"><value>Höhe</value></data>
+  <data name="CenterOverlay" xml:space="preserve"><value>Einblendung zentrieren</value></data>
+  <data name="ShowOverlay" xml:space="preserve"><value>Einblendung anzeigen</value></data>
+  <data name="HideOverlay" xml:space="preserve"><value>Einblendung ausblenden</value></data>
+  <data name="MoveHelp" xml:space="preserve"><value>Ziehen Sie die Einblendung, um sie zu verschieben. Mit dem unteren Griff ändern Sie die Größe. Ein Doppelklick öffnet die Steuerung.</value></data>
+  <data name="DisplayHeading" xml:space="preserve"><value>ANZEIGE</value></data>
+  <data name="Hotkey" xml:space="preserve"><value>Strg + Umschalt + F9: Einblendung ausblenden / anzeigen</value></data>
+  <data name="HotkeyHelp" xml:space="preserve"><value>Funktioniert auch aus anderen Anwendungen bei geschlossenen Einstellungen. Die Webcam bleibt aktiv, während die Einblendung ausgeblendet ist.</value></data>
+  <data name="Ready" xml:space="preserve"><value>Bereit.</value></data>
+  <data name="TrayHelp" xml:space="preserve"><value>Pastille bleibt im Infobereich neben der Uhr. Rechtsklick auf das Symbol: Einstellungen, Einblendung anzeigen/ausblenden, Beenden. Das Schließen dieses Fensters beendet Pastille nicht.</value></data>
+  <data name="CloseSettings" xml:space="preserve"><value>Einstellungen schließen</value></data>
+  <data name="Footer" xml:space="preserve"><value>Nativ für ARM64 / x64 · lokale Webcam · keine Aufnahme und kein Mikrofonzugriff</value></data>
+  <data name="ErrorTitle" xml:space="preserve"><value>Pastille — Fehler</value></data>
+  <data name="TrayNotReady" xml:space="preserve"><value>Das Pastille-Symbol wurde nicht initialisiert.</value></data>
+  <data name="HotkeyUnavailable" xml:space="preserve"><value>Strg + Umschalt + F9 ist nicht verfügbar. Schließen Sie die andere Instanz von Pastille, die alte Anwendung Visage oder die Anwendung, die diese Tastenkombination verwendet, und starten Sie Pastille neu. Die Schaltfläche zum Ein-/Ausblenden bleibt verfügbar.</value></data>
+  <data name="HotkeyError" xml:space="preserve"><value>Die globale Tastenkombination Strg + Umschalt + F9 kann nicht registriert werden.</value></data>
+  <data name="WindowUnavailable" xml:space="preserve"><value>Windows-Fenster nicht verfügbar.</value></data>
+  <data name="SettingsReadError" xml:space="preserve"><value>Die Einstellungen konnten nicht gelesen werden. Die Standardwerte werden verwendet.</value></data>
+  <data name="NoCamera" xml:space="preserve"><value>Keine Webcam gefunden. Schließen Sie eine an und aktualisieren Sie die Liste.</value></data>
+  <data name="CameraStopped" xml:space="preserve"><value>Webcam gestoppt.</value></data>
+  <data name="SelectCamera" xml:space="preserve"><value>Wählen Sie eine Webcam. Prüfen Sie auch die Berechtigungen unter Einstellungen &gt; Datenschutz und Sicherheit &gt; Kamera.</value></data>
+  <data name="CameraActive" xml:space="preserve"><value>Webcam aktiv.</value></data>
+  <data name="CameraError" xml:space="preserve"><value>Webcam: {0}
+Erlauben Sie Desktop-Apps in den Windows-Einstellungen den Zugriff auf die Kamera.</value></data>
+  <data name="CameraInterrupted" xml:space="preserve"><value>Die Webcam wurde unterbrochen: {0}</value></data>
+  <data name="InvalidOutlineColor" xml:space="preserve"><value>Ungültige Umrandungsfarbe.</value></data>
+  <data name="Center" xml:space="preserve"><value>Mitte</value></data>
+  <data name="Configure" xml:space="preserve"><value>Einstellungen…</value></data>
+  <data name="Quit" xml:space="preserve"><value>Pastille beenden</value></data>
+  <data name="TrayTip" xml:space="preserve"><value>Pastille — Rechtsklick: Einstellungen / Beenden</value></data>
+  <data name="TrayAddError" xml:space="preserve"><value>Windows kann das Pastille-Symbol nicht zum Infobereich hinzufügen.</value></data>
+  <data name="TrayInitError" xml:space="preserve"><value>Windows kann die Steuerung des Pastille-Symbols nicht initialisieren.</value></data>
+  <data name="TrayCreateError" xml:space="preserve"><value>Das Pastille-Symbol kann nicht erstellt werden.</value></data>
+  <data name="TrayRemoveError" xml:space="preserve"><value>Windows hat die Entfernung des Pastille-Symbols nicht bestätigt.</value></data>
+  <data name="Placeholder" xml:space="preserve"><value>PASTILLE
+Webcam gestoppt</value></data>
+  <data name="ResizeTip" xml:space="preserve"><value>Ziehen, um die Größe zu ändern</value></data>
+  <data name="OverlayTitle" xml:space="preserve"><value>Pastille — Webcam</value></data>
+  <data name="ShowControls" xml:space="preserve"><value>Steuerung anzeigen</value></data>
+  <data name="HideOverlayHotkey" xml:space="preserve"><value>Einblendung ausblenden (Strg + Umschalt + F9)</value></data>
+  <data name="ToggleShape" xml:space="preserve"><value>Oval / Rechteck</value></data>
+  <data name="NoColorStream" xml:space="preserve"><value>Diese Webcam liefert keinen kompatiblen Farbvideostream.</value></data>
+  <data name="CameraStartError" xml:space="preserve"><value>Die Webcam kann nicht gestartet werden: {0}.</value></data>
+  <data name="ColorDialogError" xml:space="preserve"><value>Die Farbauswahl kann nicht geöffnet werden.</value></data>
+  <data name="ColorFormatError" xml:space="preserve"><value>Die Umrandungsfarbe muss das Format #RRGGBB haben.</value></data>
+  <data name="EmptySettings" xml:space="preserve"><value>Die Einstellungsdatei ist leer.</value></data>
+</root>

@@ -7,6 +7,10 @@ public partial class App : Application
 {
     protected override async void OnStartup(StartupEventArgs e)
     {
+        Localization.Initialize();
+        FrameworkElement.LanguageProperty.OverrideMetadata(typeof(FrameworkElement),
+            new FrameworkPropertyMetadata(System.Windows.Markup.XmlLanguage.GetLanguage(
+                System.Globalization.CultureInfo.CurrentUICulture.IetfLanguageTag)));
         base.OnStartup(e);
         DispatcherUnhandledException += (_, args) =>
         {
@@ -48,6 +52,6 @@ public partial class App : Application
     internal static void Report(Exception ex)
     {
         Log(ex);
-        MessageBox.Show(ex.Message, "Pastille — erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+        MessageBox.Show(ex.Message, Localization.Text("ErrorTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
     }
 }

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="ConfigurationTitle" xml:space="preserve"><value>Pastille — configuration</value></data>
+  <data name="Tagline" xml:space="preserve"><value>Votre webcam, au-dessus de vos applications.</value></data>
+  <data name="WebcamHeading" xml:space="preserve"><value>WEBCAM</value></data>
+  <data name="StartCamera" xml:space="preserve"><value>Activer la webcam</value></data>
+  <data name="StopCamera" xml:space="preserve"><value>Arrêter la webcam</value></data>
+  <data name="Refresh" xml:space="preserve"><value>Actualiser</value></data>
+  <data name="Privacy" xml:space="preserve"><value>Aucune image n'est envoyée sur Internet.</value></data>
+  <data name="OverlayHeading" xml:space="preserve"><value>PASTILLE</value></data>
+  <data name="Oval" xml:space="preserve"><value>Ovale</value></data>
+  <data name="Rectangle" xml:space="preserve"><value>Rectangle</value></data>
+  <data name="Mirror" xml:space="preserve"><value>Effet miroir</value></data>
+  <data name="Outline" xml:space="preserve"><value>Liseré</value></data>
+  <data name="ShowOutline" xml:space="preserve"><value>Afficher le liseré</value></data>
+  <data name="Thickness" xml:space="preserve"><value>Épaisseur</value></data>
+  <data name="PickColor" xml:space="preserve"><value>Choisir la couleur…</value></data>
+  <data name="RectangleCorners" xml:space="preserve"><value>Arrondi du rectangle</value></data>
+  <data name="Radius" xml:space="preserve"><value>Rayon</value></data>
+  <data name="RadiusHelp" xml:space="preserve"><value>0 : angles droits. Disponible en mode Rectangle. L'arrondi est limité à la moitié du plus petit côté.</value></data>
+  <data name="Framing" xml:space="preserve"><value>Cadrage du visage</value></data>
+  <data name="Zoom" xml:space="preserve"><value>Zoom</value></data>
+  <data name="Horizontal" xml:space="preserve"><value>Horizontal</value></data>
+  <data name="Vertical" xml:space="preserve"><value>Vertical</value></data>
+  <data name="ResetFraming" xml:space="preserve"><value>Réinitialiser le cadrage</value></data>
+  <data name="FramingHelp" xml:space="preserve"><value>Le zoom et le cadrage déplacent l'image à l'intérieur de la pastille, sans déplacer celle-ci. La molette sur la pastille règle aussi le zoom.</value></data>
+  <data name="OverlaySize" xml:space="preserve"><value>Taille de la pastille</value></data>
+  <data name="Width" xml:space="preserve"><value>Largeur</value></data>
+  <data name="Height" xml:space="preserve"><value>Hauteur</value></data>
+  <data name="CenterOverlay" xml:space="preserve"><value>Recentrer la pastille</value></data>
+  <data name="ShowOverlay" xml:space="preserve"><value>Afficher la pastille</value></data>
+  <data name="HideOverlay" xml:space="preserve"><value>Cacher la pastille</value></data>
+  <data name="MoveHelp" xml:space="preserve"><value>Glissez la pastille pour la déplacer. Sa poignée inférieure permet de la redimensionner. Double-cliquez pour retrouver les commandes.</value></data>
+  <data name="DisplayHeading" xml:space="preserve"><value>AFFICHAGE</value></data>
+  <data name="Hotkey" xml:space="preserve"><value>Ctrl + Maj + F9 : cacher / afficher la pastille</value></data>
+  <data name="HotkeyHelp" xml:space="preserve"><value>Fonctionne depuis les autres applications, même lorsque la configuration est fermée. La webcam reste active pendant que la pastille est cachée.</value></data>
+  <data name="Ready" xml:space="preserve"><value>Prêt.</value></data>
+  <data name="TrayHelp" xml:space="preserve"><value>Pastille reste dans la zone de notification près de l'horloge. Clic droit sur son icône : Configuration, afficher/cacher la pastille, Quitter. Fermer cette fenêtre ne quitte pas Pastille.</value></data>
+  <data name="CloseSettings" xml:space="preserve"><value>Fermer la configuration</value></data>
+  <data name="Footer" xml:space="preserve"><value>Natif ARM64 / x64 · webcam locale · aucun enregistrement ni accès au microphone</value></data>
+  <data name="ErrorTitle" xml:space="preserve"><value>Pastille — erreur</value></data>
+  <data name="TrayNotReady" xml:space="preserve"><value>L'icône Pastille n'est pas initialisée.</value></data>
+  <data name="HotkeyUnavailable" xml:space="preserve"><value>Raccourci Ctrl + Maj + F9 indisponible. Fermez l'autre instance de Pastille, l'ancienne application Visage ou l'application qui l'utilise, puis relancez Pastille. Le bouton d'affichage reste disponible.</value></data>
+  <data name="HotkeyError" xml:space="preserve"><value>Impossible d'enregistrer le raccourci global Ctrl + Maj + F9.</value></data>
+  <data name="WindowUnavailable" xml:space="preserve"><value>Fenêtre Windows indisponible.</value></data>
+  <data name="SettingsReadError" xml:space="preserve"><value>Les préférences n'ont pas pu être lues. Les valeurs par défaut seront utilisées.</value></data>
+  <data name="NoCamera" xml:space="preserve"><value>Aucune webcam détectée. Branchez-la puis actualisez.</value></data>
+  <data name="CameraStopped" xml:space="preserve"><value>Webcam arrêtée.</value></data>
+  <data name="SelectCamera" xml:space="preserve"><value>Sélectionnez une webcam. Vérifiez aussi les autorisations dans Paramètres &gt; Confidentialité et sécurité &gt; Caméra.</value></data>
+  <data name="CameraActive" xml:space="preserve"><value>Webcam active.</value></data>
+  <data name="CameraError" xml:space="preserve"><value>Webcam : {0}
+Autorisez les applications de bureau à accéder à la caméra dans les paramètres Windows.</value></data>
+  <data name="CameraInterrupted" xml:space="preserve"><value>La webcam a été interrompue : {0}</value></data>
+  <data name="InvalidOutlineColor" xml:space="preserve"><value>Couleur du liseré invalide.</value></data>
+  <data name="Center" xml:space="preserve"><value>Centre</value></data>
+  <data name="Configure" xml:space="preserve"><value>Configuration…</value></data>
+  <data name="Quit" xml:space="preserve"><value>Quitter Pastille</value></data>
+  <data name="TrayTip" xml:space="preserve"><value>Pastille — clic droit : configuration / quitter</value></data>
+  <data name="TrayAddError" xml:space="preserve"><value>Windows ne peut pas ajouter l'icône Pastille dans la zone de notification.</value></data>
+  <data name="TrayInitError" xml:space="preserve"><value>Windows ne peut pas initialiser les commandes de l'icône Pastille.</value></data>
+  <data name="TrayCreateError" xml:space="preserve"><value>Impossible de créer l'icône Pastille.</value></data>
+  <data name="TrayRemoveError" xml:space="preserve"><value>Windows n'a pas confirmé la suppression de l'icône Pastille.</value></data>
+  <data name="Placeholder" xml:space="preserve"><value>PASTILLE
+Webcam arrêtée</value></data>
+  <data name="ResizeTip" xml:space="preserve"><value>Glisser pour redimensionner</value></data>
+  <data name="OverlayTitle" xml:space="preserve"><value>Pastille — webcam</value></data>
+  <data name="ShowControls" xml:space="preserve"><value>Afficher les commandes</value></data>
+  <data name="HideOverlayHotkey" xml:space="preserve"><value>Cacher la pastille (Ctrl + Maj + F9)</value></data>
+  <data name="ToggleShape" xml:space="preserve"><value>Ovale / rectangle</value></data>
+  <data name="NoColorStream" xml:space="preserve"><value>Cette webcam ne fournit pas de flux vidéo couleur compatible.</value></data>
+  <data name="CameraStartError" xml:space="preserve"><value>Impossible de démarrer la webcam : {0}.</value></data>
+  <data name="ColorDialogError" xml:space="preserve"><value>Le sélecteur de couleur ne peut pas s'ouvrir.</value></data>
+  <data name="ColorFormatError" xml:space="preserve"><value>La couleur du liseré doit être au format #RRGGBB.</value></data>
+  <data name="EmptySettings" xml:space="preserve"><value>Le fichier de préférences est vide.</value></data>
+</root>

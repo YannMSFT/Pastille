@@ -61,11 +61,11 @@ internal sealed class TrayIcon : IDisposable
         this.failed = failed;
         taskbarCreated = RegisterWindowMessage("TaskbarCreated");
         if (taskbarCreated == 0) throw new Win32Exception(Marshal.GetLastWin32Error());
-        AddItem("Configuration…", configure);
+        AddItem(Localization.Text("Configure"), configure);
         visibilityItem.Click += (_, _) => { Menu.IsOpen = false; toggle(); };
         Menu.Items.Add(visibilityItem);
         Menu.Items.Add(new Separator());
-        AddItem("Quitter Pastille", quit);
+        AddItem(Localization.Text("Quit"), quit);
         Menu.Closed += (_, _) =>
         {
             if (!disposed) Shell_NotifyIcon(3, ref data);
@@ -77,7 +77,7 @@ internal sealed class TrayIcon : IDisposable
             {
                 Size = (uint)Marshal.SizeOf<NotifyIconData>(), Window = source.Handle, Id = IconId,
                 Flags = 0x87, Callback = CallbackMessage, Icon = icon,
-                Tip = "Pastille — clic droit : configuration / quitter", Info = "", Title = ""
+                Tip = Localization.Text("TrayTip"), Info = "", Title = ""
             };
             source.AddHook(WindowMessage);
             Add();
@@ -96,14 +96,14 @@ internal sealed class TrayIcon : IDisposable
     private void Add()
     {
         if (!Shell_NotifyIcon(0, ref data))
-            throw new InvalidOperationException("Windows ne peut pas ajouter l'icône Pastille dans la zone de notification.");
+            throw new InvalidOperationException(Localization.Text("TrayAddError"));
         data.Version = 4;
         if (!Shell_NotifyIcon(4, ref data))
-            throw new InvalidOperationException("Windows ne peut pas initialiser les commandes de l'icône Pastille.");
+            throw new InvalidOperationException(Localization.Text("TrayInitError"));
     }
 
     internal void RefreshVisibility() =>
-        visibilityItem.Header = overlayVisible() ? "Cacher la pastille" : "Afficher la pastille";
+        visibilityItem.Header = Localization.Text(overlayVisible() ? "HideOverlay" : "ShowOverlay");
 
     private nint WindowMessage(nint hwnd, int message, nint wparam, nint lparam, ref bool handled)
     {
@@ -159,7 +159,7 @@ internal sealed class TrayIcon : IDisposable
         encoder.Save(stream);
         var bytes = stream.ToArray();
         var result = CreateIconFromResourceEx(bytes, (uint)bytes.Length, true, 0x30000, 32, 32, 0);
-        if (result == 0) throw new Win32Exception(Marshal.GetLastWin32Error(), "Impossible de créer l'icône Pastille.");
+        if (result == 0) throw new Win32Exception(Marshal.GetLastWin32Error(), Localization.Text("TrayCreateError"));
         return result;
     }
 
@@ -170,7 +170,7 @@ internal sealed class TrayIcon : IDisposable
         Menu.IsOpen = false;
         source.RemoveHook(WindowMessage);
         if (data.Window != 0 && !Shell_NotifyIcon(2, ref data))
-            App.Log(new InvalidOperationException("Windows n'a pas confirmé la suppression de l'icône Pastille."));
+            App.Log(new InvalidOperationException(Localization.Text("TrayRemoveError")));
         if (icon != 0) { DestroyIcon(icon); icon = 0; }
     }
 }

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="ConfigurationTitle" xml:space="preserve"><value>Pastille — settings</value></data>
+  <data name="Tagline" xml:space="preserve"><value>Your webcam, above your applications.</value></data>
+  <data name="WebcamHeading" xml:space="preserve"><value>WEBCAM</value></data>
+  <data name="StartCamera" xml:space="preserve"><value>Start webcam</value></data>
+  <data name="StopCamera" xml:space="preserve"><value>Stop webcam</value></data>
+  <data name="Refresh" xml:space="preserve"><value>Refresh</value></data>
+  <data name="Privacy" xml:space="preserve"><value>No images are sent over the Internet.</value></data>
+  <data name="OverlayHeading" xml:space="preserve"><value>OVERLAY</value></data>
+  <data name="Oval" xml:space="preserve"><value>Oval</value></data>
+  <data name="Rectangle" xml:space="preserve"><value>Rectangle</value></data>
+  <data name="Mirror" xml:space="preserve"><value>Mirror image</value></data>
+  <data name="Outline" xml:space="preserve"><value>Outline</value></data>
+  <data name="ShowOutline" xml:space="preserve"><value>Show outline</value></data>
+  <data name="Thickness" xml:space="preserve"><value>Thickness</value></data>
+  <data name="PickColor" xml:space="preserve"><value>Choose color…</value></data>
+  <data name="RectangleCorners" xml:space="preserve"><value>Rectangle corners</value></data>
+  <data name="Radius" xml:space="preserve"><value>Radius</value></data>
+  <data name="RadiusHelp" xml:space="preserve"><value>0: square corners. Available in Rectangle mode. Rounding is limited to half the shortest side.</value></data>
+  <data name="Framing" xml:space="preserve"><value>Face framing</value></data>
+  <data name="Zoom" xml:space="preserve"><value>Zoom</value></data>
+  <data name="Horizontal" xml:space="preserve"><value>Horizontal</value></data>
+  <data name="Vertical" xml:space="preserve"><value>Vertical</value></data>
+  <data name="ResetFraming" xml:space="preserve"><value>Reset framing</value></data>
+  <data name="FramingHelp" xml:space="preserve"><value>Zoom and framing move the image inside the overlay without moving the overlay itself. The mouse wheel over the overlay also adjusts zoom.</value></data>
+  <data name="OverlaySize" xml:space="preserve"><value>Overlay size</value></data>
+  <data name="Width" xml:space="preserve"><value>Width</value></data>
+  <data name="Height" xml:space="preserve"><value>Height</value></data>
+  <data name="CenterOverlay" xml:space="preserve"><value>Center overlay</value></data>
+  <data name="ShowOverlay" xml:space="preserve"><value>Show overlay</value></data>
+  <data name="HideOverlay" xml:space="preserve"><value>Hide overlay</value></data>
+  <data name="MoveHelp" xml:space="preserve"><value>Drag the overlay to move it. Use its bottom handle to resize it. Double-click to open the controls.</value></data>
+  <data name="DisplayHeading" xml:space="preserve"><value>DISPLAY</value></data>
+  <data name="Hotkey" xml:space="preserve"><value>Ctrl + Shift + F9: hide / show overlay</value></data>
+  <data name="HotkeyHelp" xml:space="preserve"><value>Works from other applications even when settings are closed. The webcam stays active while the overlay is hidden.</value></data>
+  <data name="Ready" xml:space="preserve"><value>Ready.</value></data>
+  <data name="TrayHelp" xml:space="preserve"><value>Pastille stays in the notification area near the clock. Right-click its icon for Settings, hide/show overlay, or Quit. Closing this window does not quit Pastille.</value></data>
+  <data name="CloseSettings" xml:space="preserve"><value>Close settings</value></data>
+  <data name="Footer" xml:space="preserve"><value>Native ARM64 / x64 · local webcam · no recording or microphone access</value></data>
+  <data name="ErrorTitle" xml:space="preserve"><value>Pastille — error</value></data>
+  <data name="TrayNotReady" xml:space="preserve"><value>The Pastille icon has not been initialized.</value></data>
+  <data name="HotkeyUnavailable" xml:space="preserve"><value>Ctrl + Shift + F9 is unavailable. Close the other instance of Pastille, the old Visage application, or the application using this shortcut, then restart Pastille. The visibility button remains available.</value></data>
+  <data name="HotkeyError" xml:space="preserve"><value>Cannot register the global Ctrl + Shift + F9 shortcut.</value></data>
+  <data name="WindowUnavailable" xml:space="preserve"><value>Windows window unavailable.</value></data>
+  <data name="SettingsReadError" xml:space="preserve"><value>Preferences could not be read. Default values will be used.</value></data>
+  <data name="NoCamera" xml:space="preserve"><value>No webcam detected. Connect one, then refresh.</value></data>
+  <data name="CameraStopped" xml:space="preserve"><value>Webcam stopped.</value></data>
+  <data name="SelectCamera" xml:space="preserve"><value>Select a webcam. Also check permissions in Settings &gt; Privacy &amp; security &gt; Camera.</value></data>
+  <data name="CameraActive" xml:space="preserve"><value>Webcam active.</value></data>
+  <data name="CameraError" xml:space="preserve"><value>Webcam: {0}
+Allow desktop apps to access the camera in Windows settings.</value></data>
+  <data name="CameraInterrupted" xml:space="preserve"><value>The webcam was interrupted: {0}</value></data>
+  <data name="InvalidOutlineColor" xml:space="preserve"><value>Invalid outline color.</value></data>
+  <data name="Center" xml:space="preserve"><value>Center</value></data>
+  <data name="Configure" xml:space="preserve"><value>Settings…</value></data>
+  <data name="Quit" xml:space="preserve"><value>Quit Pastille</value></data>
+  <data name="TrayTip" xml:space="preserve"><value>Pastille — right-click: settings / quit</value></data>
+  <data name="TrayAddError" xml:space="preserve"><value>Windows cannot add the Pastille icon to the notification area.</value></data>
+  <data name="TrayInitError" xml:space="preserve"><value>Windows cannot initialize the Pastille icon controls.</value></data>
+  <data name="TrayCreateError" xml:space="preserve"><value>Cannot create the Pastille icon.</value></data>
+  <data name="TrayRemoveError" xml:space="preserve"><value>Windows did not confirm removal of the Pastille icon.</value></data>
+  <data name="Placeholder" xml:space="preserve"><value>PASTILLE
+Webcam stopped</value></data>
+  <data name="ResizeTip" xml:space="preserve"><value>Drag to resize</value></data>
+  <data name="OverlayTitle" xml:space="preserve"><value>Pastille — webcam</value></data>
+  <data name="ShowControls" xml:space="preserve"><value>Show controls</value></data>
+  <data name="HideOverlayHotkey" xml:space="preserve"><value>Hide overlay (Ctrl + Shift + F9)</value></data>
+  <data name="ToggleShape" xml:space="preserve"><value>Oval / rectangle</value></data>
+  <data name="NoColorStream" xml:space="preserve"><value>This webcam does not provide a compatible color video stream.</value></data>
+  <data name="CameraStartError" xml:space="preserve"><value>Cannot start the webcam: {0}.</value></data>
+  <data name="ColorDialogError" xml:space="preserve"><value>The color picker cannot be opened.</value></data>
+  <data name="ColorFormatError" xml:space="preserve"><value>The outline color must use the #RRGGBB format.</value></data>
+  <data name="EmptySettings" xml:space="preserve"><value>The preferences file is empty.</value></data>
+</root>

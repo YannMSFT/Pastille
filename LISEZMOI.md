@@ -6,6 +6,15 @@ La webcam reste sur votre PC. Aucun accès réseau n'est prévu par l'applicatio
 Cette version ne comporte plus d'enregistrement, de capture d'écran ni d'accès au microphone.
 Les anciennes vidéos ne sont ni modifiées ni supprimées.
 
+Le [README anglais](README.md) décrit également l'installation, les commandes et la compilation.
+Le code source prend désormais en charge le français, l'anglais, l'espagnol, l'allemand et l'italien :
+la langue d'affichage Windows de l'utilisateur est sélectionnée au démarrage, avant la création
+des fenêtres et de l'icône. Les variantes régionales utilisent leur traduction de base et leur
+formatage régional ; les autres langues utilisent l'anglais. Redémarrez Pastille après un changement
+de langue Windows. Les noms de webcams, les boîtes de dialogue natives et les détails d'erreurs
+fournis par Windows ou les pilotes gardent leur propre langue. Les préférences restent compatibles.
+Ces changements nécessitent une nouvelle compilation ; les ZIP 0.5.2 déjà publiés ne sont pas modifiés.
+
 ## Utilisation
 
 1. Lancez `Pastille.exe`. L'application démarre dans la **zone de notification**, près de
@@ -147,6 +156,14 @@ Il vérifie aussi le nom Pastille et l'import des anciennes préférences dans d
 temporaires isolés. Le binaire publié est également vérifié avec son moteur CoreCLR intégré,
 sa bibliothèque de base embarquée et ses dépendances WPF natives extraites, sans dépendre
 de l'installation .NET du PC.
+
+Les auto-tests vérifient également la présence de toutes les ressources et de leurs paramètres
+de formatage dans les cinq langues, la sélection des variantes régionales, le repli anglais,
+les cultures des tâches et le formatage des pourcentages. Les fenêtres WPF, menus de la pastille
+et commandes de l'icône sont exercés dans chaque langue et après repli anglais. Ces tests
+nécessitent un bureau Windows interactif et un dossier accessible en écriture pour les résultats.
+Les ressources standard `Strings*.resx` partagent les mêmes clés ; `Strings.resx` contient
+l'anglais par défaut et `Localization.cs` centralise les recherches XAML et C#.
 
 Références : [WinRT depuis une application de bureau](https://learn.microsoft.com/windows/apps/desktop/modernize/desktop-to-uwp-enhance),
 [MediaFrameReader](https://learn.microsoft.com/windows/uwp/audio-video-camera/process-media-frames-with-mediaframereader),

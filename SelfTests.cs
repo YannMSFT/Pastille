@@ -1,6 +1,10 @@
 using System.IO;
+using System.Collections;
+using System.Globalization;
 using System.Reflection;
+using System.Resources;
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
@@ -111,12 +115,109 @@ internal static class SelfTests
         results.Add("PASS Outline on/off, RGB colors and 1/2/6/20-unit thickness rendered for oval and rectangle");
         await CheckCornerRadiusAsync();
         results.Add("PASS Rectangle radius 0/12/40/200, clipped image and matching outline, resize clamp and oval independence");
-        await CheckVisibilityAsync(results);
+        await CheckLocalizationAsync(results);
         Assert(typeof(App).Assembly.GetType("Pastille.ScreenRecorder") is null &&
             typeof(App).Assembly.GetType("Pastille.Microphone") is null &&
             typeof(App).Assembly.GetType("Pastille.DesktopCapture") is null, "recording implementation removed");
         results.Add("PASS Screen recorder, desktop capture and microphone removed from application");
         File.WriteAllLines(Path.Combine(AppContext.BaseDirectory, "self-test-results.txt"), results);
+    }
+
+    private static async Task CheckLocalizationAsync(List<string> results)
+    {
+        var originalCulture = CultureInfo.CurrentCulture;
+        var originalUiCulture = CultureInfo.CurrentUICulture;
+        var originalDefaultCulture = CultureInfo.DefaultThreadCurrentCulture;
+        var originalDefaultUiCulture = CultureInfo.DefaultThreadCurrentUICulture;
+        Assert(System.Windows.Markup.XmlLanguage.GetLanguage(originalUiCulture.IetfLanguageTag).Equals(
+            FrameworkElement.LanguageProperty.GetMetadata(typeof(FrameworkElement)).DefaultValue),
+            "WPF language initialized from the selected Windows UI culture before windows are created");
+        try
+        {
+            var neutral = Localization.Resources.GetResourceSet(CultureInfo.InvariantCulture, true, false)
+                ?? throw new InvalidOperationException("Neutral English resources missing.");
+            var keys = neutral.Cast<DictionaryEntry>().Select(entry => (string)entry.Key).ToHashSet();
+            foreach (var language in Localization.SupportedLanguages)
+            {
+                var culture = CultureInfo.GetCultureInfo(language);
+                var manager = new ResourceManager("Pastille.Strings", typeof(App).Assembly);
+                var resources = manager.GetResourceSet(culture, true, false)
+                    ?? throw new InvalidOperationException($"{language}: resource set missing without parent fallback");
+                Assert(keys.SetEquals(resources.Cast<DictionaryEntry>().Select(entry => (string)entry.Key)),
+                    $"{language}: exactly the same resource keys as English");
+                foreach (var key in keys)
+                {
+                    var value = resources.GetString(key)
+                        ?? throw new InvalidOperationException($"{language}: resource {key} missing");
+                    Assert(!string.IsNullOrWhiteSpace(value), $"{language}: nonempty resource {key}");
+                    var expectedFormat = CompositeFormat.Parse(neutral.GetString(key)!);
+                    var actualFormat = CompositeFormat.Parse(value);
+                    Assert(actualFormat.MinimumArgumentCount == expectedFormat.MinimumArgumentCount,
+                        $"{language}: format arguments preserved for {key}");
+                    var arguments = Enumerable.Range(0, actualFormat.MinimumArgumentCount)
+                        .Select(index => (object)$"argument-{index}").ToArray();
+                    var formatted = string.Format(culture, value, arguments);
+                    Assert(arguments.All(argument => formatted.Contains((string)argument, StringComparison.Ordinal)),
+                        $"{language}: all diagnostic arguments present for {key}");
+                }
+                Assert(resources.GetString("TrayTip")!.Length < 128, $"{language}: native tray tooltip limit");
+                results.Add($"PASS {language}: {keys.Count} complete resources, format arguments and tray tooltip length");
+            }
+            foreach (var name in new[] { "en-US", "en-GB", "fr-FR", "fr-CA", "es-ES", "es-MX",
+                "de-DE", "de-AT", "it-IT", "it-CH" })
+            {
+                var culture = CultureInfo.GetCultureInfo(name);
+                Assert(Localization.SelectCulture(culture).Name == name, $"{name}: regional culture retained");
+            }
+            foreach (var name in new[] { "ja-JP", "pt-BR", "ar-SA", "" })
+                Assert(Localization.SelectCulture(CultureInfo.GetCultureInfo(name)).Name == "en",
+                    $"{name}: unsupported or invariant UI culture falls back to English");
+            results.Add("PASS Windows UI language selection, regional variants and unsupported/invariant English fallback");
+
+            var cases = new[]
+            {
+                ("en-GB", "Settings…"), ("fr-CA", "Configuration…"), ("es-MX", "Configuración…"),
+                ("de-AT", "Einstellungen…"), ("it-CH", "Impostazioni…"), ("ja-JP", "Settings…")
+            };
+            foreach (var (name, expectedConfigure) in cases)
+            {
+                var culture = Localization.SelectCulture(CultureInfo.GetCultureInfo(name));
+                Localization.ApplyCulture(culture);
+                Assert(Localization.Text("Configure") == expectedConfigure, $"{name}: expected translated text");
+                Assert(CultureInfo.CurrentCulture.Name == culture.Name &&
+                    CultureInfo.CurrentUICulture.Name == culture.Name, $"{name}: formatting and UI cultures agree");
+                Assert(await Task.Run(() => CultureInfo.CurrentUICulture.Name == culture.Name &&
+                    CultureInfo.CurrentCulture.Name == culture.Name), $"{name}: worker culture");
+                var invalid = new Settings { OutlineColor = "invalid" };
+                try
+                {
+                    invalid.Normalize();
+                    Assert(false, $"{name}: invalid color must throw");
+                }
+                catch (InvalidDataException ex)
+                {
+                    Assert(ex.Message == Localization.Text("ColorFormatError"), $"{name}: localized validation error");
+                }
+                Assert(Localization.Format("CameraError", "diagnostic").Contains("diagnostic", StringComparison.Ordinal) &&
+                    Localization.Format("CameraStartError", "DeviceNotAvailable").Contains("DeviceNotAvailable",
+                        StringComparison.Ordinal), $"{name}: localized camera errors retain technical details");
+                CheckLegacyMigration();
+                var json = JsonSerializer.Serialize(new Settings { Zoom = 1.25, PanX = -0.5 });
+                Assert(json.Contains("\"Zoom\":1.25", StringComparison.Ordinal) &&
+                    JsonSerializer.Deserialize<Settings>(json)!.PanX == -0.5,
+                    $"{name}: JSON names and numbers remain culture-independent");
+                await CheckVisibilityAsync(results);
+                results.Add($"PASS {name} -> {culture.Name}: localized WPF controls, overlay and real tray, " +
+                    "numeric formatting, errors, hide/show, hotkey, native color picker and exit");
+            }
+        }
+        finally
+        {
+            CultureInfo.DefaultThreadCurrentCulture = originalDefaultCulture;
+            CultureInfo.DefaultThreadCurrentUICulture = originalDefaultUiCulture;
+            CultureInfo.CurrentCulture = originalCulture;
+            CultureInfo.CurrentUICulture = originalUiCulture;
+        }
     }
 
     private static void CheckTrayArtwork()
@@ -260,6 +361,27 @@ internal static class SelfTests
             await window.StartInTrayAsync();
             await Task.Delay(300);
             var overlay = Application.Current.Windows.OfType<OverlayWindow>().Single();
+            Assert(window.Title == Localization.Text("ConfigurationTitle") &&
+                window.CameraButton.Content.ToString() == Localization.Text("StartCamera") &&
+                window.RefreshButton.Content.ToString() == Localization.Text("Refresh") &&
+                window.VisibleChoice.Content.ToString() == Localization.Text("ShowOverlay") &&
+                window.OutlineChoice.Content.ToString() == Localization.Text("ShowOutline"),
+                "localized XAML window title and controls");
+            Assert(overlay.Title == Localization.Text("OverlayTitle") &&
+                ((Grid)overlay.Content).Children.OfType<Grid>().Single().Children.OfType<TextBlock>().Single().Text ==
+                Localization.Text("Placeholder"), "localized overlay title and stopped-camera placeholder");
+            Assert(overlay.ContextMenu.Items.OfType<MenuItem>().Select(item => item.Header.ToString()).SequenceEqual(
+                new[] { "ShowControls", "HideOverlayHotkey", "ToggleShape", "ResetFraming" }.Select(Localization.Text)),
+                "all overlay menu entries localized");
+            Assert(window.ZoomLabel.Text == settings.Zoom.ToString("P0", CultureInfo.CurrentCulture) &&
+                window.PanXLabel.Text == CultureInfo.CurrentCulture.NumberFormat.PositiveSign +
+                    settings.PanX.ToString("P0", CultureInfo.CurrentCulture) &&
+                window.PanYLabel.Text == settings.PanY.ToString("P0", CultureInfo.CurrentCulture),
+                "percentage labels use regional percent spacing, symbols and positive/negative signs");
+            var previousPanX = settings.PanX;
+            window.PanXSlider.Value = 0;
+            Assert(window.PanXLabel.Text == Localization.Text("Center"), "localized centered framing label");
+            window.PanXSlider.Value = previousPanX;
             var left = overlay.Left; var top = overlay.Top;
             var handle = new WindowInteropHelper(window).Handle;
             Assert(!window.IsVisible && !window.ShowInTaskbar && !closed, "startup in tray without configuration/taskbar button");
@@ -271,7 +393,7 @@ internal static class SelfTests
             SendMessage(handle, TrayIcon.CallbackMessage, 0, (nint)((1 << 16) | 0x7B));
             Assert(window.Tray.Menu.IsOpen, "tray right-click opens context menu");
             var trayConfig = window.Tray.Menu.Items.OfType<MenuItem>().Single(x =>
-                x.Header.ToString() == "Configuration…");
+                x.Header.ToString() == Localization.Text("Configure"));
             trayConfig.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
             Assert(window.IsVisible, "tray configuration command opens controls");
             window.Close();
@@ -281,7 +403,9 @@ internal static class SelfTests
             Assert(window.IsVisible, "tray keyboard activation opens configuration");
             results.Add("PASS Real system tray icon, hidden startup, configuration from menu/keyboard and close-to-tray");
             Assert(overlay.IsVisible && window.VisibleChoice.IsChecked == true, "initial visibility");
-            var registrationAvailable = !window.HotkeyLabel.Text.Contains("indisponible");
+            var registrationAvailable = window.HotkeyLabel.Text == Localization.Text("Hotkey");
+            Assert(registrationAvailable || window.HotkeyLabel.Text == Localization.Text("HotkeyUnavailable"),
+                "localized hotkey availability or conflict message");
             Assert(window.FindName("RecordButton") is null && window.FindName("MicrophoneChoice") is null,
                 "recording controls removed");
             foreach (var accept in new[] { false, true })
@@ -335,7 +459,7 @@ internal static class SelfTests
             await Task.Delay(100);
             SendMessage(handle, 0x0312, 1, (nint)((0x78 << 16) | 6));
             Assert(!overlay.IsVisible && window.VisibleChoice.IsChecked == false &&
-                window.ToggleVisibilityButton.Content.ToString() == "Afficher la pastille", "hotkey hides and syncs UI");
+                window.ToggleVisibilityButton.Content.ToString() == Localization.Text("ShowOverlay"), "hotkey hides and syncs UI");
             SendMessage(handle, 0x0312, 1, (nint)((0x78 << 16) | 6));
             Assert(overlay.IsVisible && window.VisibleChoice.IsChecked == true &&
                 !window.IsVisible, "hotkey restores overlay without restoring controls");
@@ -347,16 +471,16 @@ internal static class SelfTests
             window.ToggleVisibilityButton.RaiseEvent(new RoutedEventArgs(System.Windows.Controls.Primitives.ButtonBase.ClickEvent));
             Assert(overlay.IsVisible && window.VisibleChoice.IsChecked == true, "button restores and syncs checkbox");
             var hideMenu = overlay.ContextMenu.Items.OfType<MenuItem>().Single(x =>
-                x.Header.ToString()!.StartsWith("Cacher la pastille"));
+                x.Header.ToString() == Localization.Text("HideOverlayHotkey"));
             hideMenu.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
             Assert(!overlay.IsVisible && window.VisibleChoice.IsChecked == false, "context menu hides");
             SendMessage(handle, 0x0312, 1, (nint)((0x78 << 16) | 6));
             Assert(overlay.IsVisible, "hotkey restores after context menu hide");
             var trayVisibility = window.Tray.Menu.Items.OfType<MenuItem>().Single(x =>
-                x.Header.ToString() == "Cacher la pastille");
+                x.Header.ToString() == Localization.Text("HideOverlay"));
             trayVisibility.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
             Assert(!overlay.IsVisible && !window.IsVisible &&
-                trayVisibility.Header.ToString() == "Afficher la pastille", "tray hides and updates menu label");
+                trayVisibility.Header.ToString() == Localization.Text("ShowOverlay"), "tray hides and updates menu label");
             trayVisibility.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
             Assert(overlay.IsVisible && !window.IsVisible, "tray restores without opening configuration");
             var receiverHandle = new WindowInteropHelper(receiver).Handle;
@@ -370,12 +494,12 @@ internal static class SelfTests
                 ? "PASS Global Ctrl+Shift+F9 registration and WM_HOTKEY hide/show while controls minimized"
                 : "PASS WM_HOTKEY hide/show; shortcut conflict explicitly reported (another application owns it)");
             results.Add("PASS Checkbox, button and context-menu visibility synchronization; framing preserved");
-            var quit = window.Tray.Menu.Items.OfType<MenuItem>().Single(x => x.Header.ToString() == "Quitter Pastille");
+            var quit = window.Tray.Menu.Items.OfType<MenuItem>().Single(x => x.Header.ToString() == Localization.Text("Quit"));
             quit.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
             await Task.Delay(150);
             Assert(closed && !overlay.IsVisible, "tray quit closes configuration and overlay");
             Assert(Shell_NotifyIconGetRect(ref identifier, out _) < 0, "tray icon removed on quit");
-            results.Add("PASS Tray visibility command and Quitter Pastille remove icon and close all app windows");
+            results.Add("PASS Tray visibility and quit commands remove icon and close all app windows");
             if (registrationAvailable)
             {
                 var released = Native.RegisterHotKey(receiverHandle, 2, 0x4006, 0x78);
