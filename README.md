@@ -19,8 +19,9 @@ that matches your processor:
 | [Pastille-x64-0.5.3.zip](https://github.com/YannMSFT/Pastille/releases/download/v0.5.3/Pastille-x64-0.5.3.zip) | Intel or AMD, 64-bit |
 | [Pastille-ARM64-0.5.3.zip](https://github.com/YannMSFT/Pastille/releases/download/v0.5.3/Pastille-ARM64-0.5.3.zip) | ARM64, including Snapdragon |
 | [Pastille-0.5.3-sources.zip](https://github.com/YannMSFT/Pastille/releases/download/v0.5.3/Pastille-0.5.3-sources.zip) | Source code and guides |
+| [Pastille-Guide-0.5.3.md](https://github.com/YannMSFT/Pastille/releases/download/v0.5.3/Pastille-Guide-0.5.3.md) | French user guide |
 
-SHA-256 checksums for all three archives are published as `SHA256SUMS.txt`
+SHA-256 checksums for all release downloads are published as `SHA256SUMS.txt`
 alongside the release assets.
 
 Check **Settings > System > About > System type** if unsure. The releases target

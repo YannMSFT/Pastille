@@ -82,6 +82,7 @@ Choisissez l'archive ZIP correspondant à votre PC :
 - [**Pastille-x64-0.5.3.zip**](https://github.com/YannMSFT/Pastille/releases/download/v0.5.3/Pastille-x64-0.5.3.zip) : processeur Intel ou AMD 64 bits.
 - [**Pastille-ARM64-0.5.3.zip**](https://github.com/YannMSFT/Pastille/releases/download/v0.5.3/Pastille-ARM64-0.5.3.zip) : processeur ARM64, notamment Snapdragon.
 - [**Pastille-0.5.3-sources.zip**](https://github.com/YannMSFT/Pastille/releases/download/v0.5.3/Pastille-0.5.3-sources.zip) : code source et guides.
+- [**Guide français Pastille 0.5.3**](https://github.com/YannMSFT/Pastille/releases/download/v0.5.3/Pastille-Guide-0.5.3.md) : copie autonome du présent guide.
 
 Dans **Paramètres > Système > Informations système > Type du système**, Windows indique
 le type de processeur. Les deux archives contiennent uniquement **Pastille.exe** :
