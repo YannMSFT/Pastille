@@ -64,8 +64,6 @@ Consenti alle app desktop di accedere alla fotocamera nelle impostazioni di Wind
   <data name="TrayInitError" xml:space="preserve"><value>Windows non può inizializzare i controlli dell'icona di Pastille.</value></data>
   <data name="TrayCreateError" xml:space="preserve"><value>Impossibile creare l'icona di Pastille.</value></data>
   <data name="TrayRemoveError" xml:space="preserve"><value>Windows non ha confermato la rimozione dell'icona di Pastille.</value></data>
-  <data name="Placeholder" xml:space="preserve"><value>PASTILLE
-Webcam arrestata</value></data>
   <data name="ResizeTip" xml:space="preserve"><value>Trascina per ridimensionare</value></data>
   <data name="OverlayTitle" xml:space="preserve"><value>Pastille — webcam</value></data>
   <data name="ShowControls" xml:space="preserve"><value>Mostra controlli</value></data>

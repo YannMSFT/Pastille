@@ -111,6 +111,8 @@ internal static class SelfTests
         results.Add("PASS Display and camera enumeration (webcam not activated)");
         await CheckCameraFramingAsync();
         results.Add("PASS Wide live-camera centering, 50%-400% zoom, two-axis pan, mirror, both shapes and resizing");
+        await CheckCameraInactiveAsync();
+        results.Add("PASS Chroma-green #00FF00 at startup and after stopping; active video clears green; both shapes, clipping and outline preserved");
         await CheckOutlineAsync();
         results.Add("PASS Outline on/off, RGB colors and 1/2/6/20-unit thickness rendered for oval and rectangle");
         await CheckCornerRadiusAsync();
@@ -292,6 +294,60 @@ internal static class SelfTests
         finally { Directory.Delete(root, true); }
     }
 
+    private static async Task CheckCameraInactiveAsync()
+    {
+        var settings = new Settings
+        {
+            Width = 240, Height = 180, OutlineEnabled = true, OutlineColor = "#FF0000",
+            OutlineThickness = 6, CornerRadius = 40
+        };
+        var frameData = new byte[240 * 180 * 4];
+        for (var i = 0; i < frameData.Length; i += 4)
+        {
+            frameData[i] = 100; frameData[i + 1] = 80; frameData[i + 2] = 60; frameData[i + 3] = 255;
+        }
+        var frame = BitmapSource.Create(240, 180, 96, 96, PixelFormats.Bgra32, null, frameData, 240 * 4);
+        var window = new OverlayWindow(settings);
+        try
+        {
+            window.Show();
+            await Task.Delay(50);
+            foreach (var oval in new[] { true, false })
+            {
+                settings.Oval = oval;
+                window.ApplyAppearance();
+                var initial = Render(window, 240, 180);
+                Assert(ColorAt(initial, 240, 120, 90, 0, 255, 0), $"initial green center, oval={oval}");
+                Assert(initial[3] == 0,
+                    $"initial inactive shape clipping, oval={oval}");
+                Assert(ColorAt(initial, 240, 120, 2, 255, 0, 0, 12),
+                    $"initial green overlay preserves outline, oval={oval}");
+
+                window.ShowFrame(frame);
+                await Task.Delay(50);
+                var active = Render(window, 240, 180);
+                Assert(ColorAt(active, 240, 120, 90, 60, 80, 100),
+                    $"active webcam image is displayed, oval={oval}");
+                Assert(!ColorAt(active, 240, 120, 90, 0, 255, 0), $"active feed replaces green, oval={oval}");
+                Assert(ColorAt(active, 240, 120, 2, 255, 0, 0, 12),
+                    $"active image preserves outline, oval={oval}");
+
+                window.ClearFrame();
+                await Task.Delay(50);
+                var stopped = Render(window, 240, 180);
+                Assert(ColorAt(stopped, 240, 120, 90, 0, 255, 0),
+                    $"stopped webcam returns green, oval={oval}");
+                Assert(stopped[3] == 0,
+                    $"stopped inactive shape clipping, oval={oval}");
+                Assert(ColorAt(stopped, 240, 120, 2, 255, 0, 0, 12),
+                    $"stopped green overlay preserves outline, oval={oval}");
+                Assert(!ColorAt(stopped, 240, 120, 90, 60, 80, 100),
+                    $"stopped webcam frame is cleared, oval={oval}");
+            }
+        }
+        finally { window.Close(); }
+    }
+
     private static byte[] Render(OverlayWindow window, int width, int height)
     {
         window.UpdateLayout();
@@ -368,8 +424,8 @@ internal static class SelfTests
                 window.OutlineChoice.Content.ToString() == Localization.Text("ShowOutline"),
                 "localized XAML window title and controls");
             Assert(overlay.Title == Localization.Text("OverlayTitle") &&
-                ((Grid)overlay.Content).Children.OfType<Grid>().Single().Children.OfType<TextBlock>().Single().Text ==
-                Localization.Text("Placeholder"), "localized overlay title and stopped-camera placeholder");
+                ((Grid)overlay.Content).Children.OfType<Grid>().Single().Children.OfType<Canvas>().Single()
+                    .ClipToBounds, "localized overlay title and clipped video viewport");
             Assert(overlay.ContextMenu.Items.OfType<MenuItem>().Select(item => item.Header.ToString()).SequenceEqual(
                 new[] { "ShowControls", "HideOverlayHotkey", "ToggleShape", "ResetFraming" }.Select(Localization.Text)),
                 "all overlay menu entries localized");
@@ -624,7 +680,7 @@ internal static class SelfTests
         var imageHeight = 540 * scale;
         var u = (x - (width - imageWidth) / 2 - settings.PanX * width / 2) / imageWidth;
         var v = (y - (height - imageHeight) / 2 - settings.PanY * height / 2) / imageHeight;
-        if (u < 0 || u > 1 || v < 0 || v > 1) return (28, 38, 48);
+        if (u < 0 || u > 1 || v < 0 || v > 1) return (0, 255, 0);
         if (settings.Mirror) u = 1 - u;
         return ((int)(u * 255), (int)(v * 255), 100);
     }

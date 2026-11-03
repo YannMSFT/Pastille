@@ -64,8 +64,6 @@ Permite que las aplicaciones de escritorio accedan a la cámara en la configurac
   <data name="TrayInitError" xml:space="preserve"><value>Windows no puede inicializar los controles del icono de Pastille.</value></data>
   <data name="TrayCreateError" xml:space="preserve"><value>No se puede crear el icono de Pastille.</value></data>
   <data name="TrayRemoveError" xml:space="preserve"><value>Windows no confirmó la eliminación del icono de Pastille.</value></data>
-  <data name="Placeholder" xml:space="preserve"><value>PASTILLE
-Cámara web detenida</value></data>
   <data name="ResizeTip" xml:space="preserve"><value>Arrastra para cambiar el tamaño</value></data>
   <data name="OverlayTitle" xml:space="preserve"><value>Pastille — cámara web</value></data>
   <data name="ShowControls" xml:space="preserve"><value>Mostrar controles</value></data>

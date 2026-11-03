@@ -1,10 +1,14 @@
-# Pastille 0.5.2 — webcam flottante pour Windows 11 ARM64 et x64
+# Pastille 0.5.3 — webcam flottante pour Windows 11 ARM64 et x64
 
 Application native WPF/.NET 8, sans navigateur embarqué, serveur ni FFmpeg.
 Un seul fichier **Pastille.exe**, autonome : le runtime .NET Desktop correspondant est inclus.
 La webcam reste sur votre PC. Aucun accès réseau n'est prévu par l'application.
 Cette version ne comporte plus d'enregistrement, de capture d'écran ni d'accès au microphone.
 Les anciennes vidéos ne sont ni modifiées ni supprimées.
+Sans webcam activée, la pastille affiche un fond vert chroma uniforme (`#00FF00`),
+à l'ouverture comme après l'arrêt de la webcam. L'ancienne image est effacée ;
+la forme, le découpage et le liseré restent inchangés. Cette couleur est adaptée
+à une incrustation sur fond vert.
 
 Le [README anglais](README.md) décrit également l'installation, les commandes et la compilation.
 Le code source prend désormais en charge le français, l'anglais, l'espagnol, l'allemand et l'italien :
@@ -13,7 +17,8 @@ des fenêtres et de l'icône. Les variantes régionales utilisent leur traductio
 formatage régional ; les autres langues utilisent l'anglais. Redémarrez Pastille après un changement
 de langue Windows. Les noms de webcams, les boîtes de dialogue natives et les détails d'erreurs
 fournis par Windows ou les pilotes gardent leur propre langue. Les préférences restent compatibles.
-Ces changements nécessitent une nouvelle compilation ; les ZIP 0.5.2 déjà publiés ne sont pas modifiés.
+Ces changements sont disponibles dans la [version 0.5.3](https://github.com/YannMSFT/Pastille/releases/tag/v0.5.3).
+Les ZIP 0.5.2 déjà publiés ne sont pas modifiés.
 
 ## Utilisation
 
@@ -63,19 +68,20 @@ sur la pastille, sans afficher ni activer la configuration. Les autres réglages
 La position, la taille, la forme, le miroir, le zoom, le cadrage, le liseré, l'arrondi et la webcam sont mémorisés.
 La webcam ne s'active pas au lancement. La pastille est visible au lancement.
 Le cadrage par défaut remplit la pastille sans déformer l'image.
-Un dézoom inférieur à 100 % ou un décalage important peut laisser apparaître son fond sombre.
+Un dézoom inférieur à 100 % ou un décalage important peut laisser apparaître le fond vert.
 
 ## Installation et mise à jour
 
-Quittez l'ancienne version (Visage ou Pastille) depuis son icône avant de lancer Pastille 0.5.2.
+Quittez toute autre instance de Pastille depuis son icône avant de lancer Pastille 0.5.3.
 Placez **Pastille.exe** dans le dossier de votre choix et double-cliquez dessus.
 L'exécutable est le seul fichier à copier : ni DLL, ni fichier de configuration livré à côté,
 ni installation de .NET ne sont nécessaires. Le guide et les sources sont facultatifs.
 
 Choisissez l'archive ZIP correspondant à votre PC :
 
-- **Pastille-x64-0.5.2.zip** : processeur Intel ou AMD 64 bits.
-- **Pastille-ARM64-0.5.2.zip** : processeur ARM64, notamment Snapdragon.
+- [**Pastille-x64-0.5.3.zip**](https://github.com/YannMSFT/Pastille/releases/download/v0.5.3/Pastille-x64-0.5.3.zip) : processeur Intel ou AMD 64 bits.
+- [**Pastille-ARM64-0.5.3.zip**](https://github.com/YannMSFT/Pastille/releases/download/v0.5.3/Pastille-ARM64-0.5.3.zip) : processeur ARM64, notamment Snapdragon.
+- [**Pastille-0.5.3-sources.zip**](https://github.com/YannMSFT/Pastille/releases/download/v0.5.3/Pastille-0.5.3-sources.zip) : code source et guides.
 
 Dans **Paramètres > Système > Informations système > Type du système**, Windows indique
 le type de processeur. Les deux archives contiennent uniquement **Pastille.exe** :
@@ -85,8 +91,7 @@ Le résultat est un seul **Pastille.exe** (environ 70 à 80 Mo). L'archive n'est
 après extraction. Il n'y a pas d'installateur.
 
 Au premier lancement, si Pastille n'a pas encore de préférences, les réglages de
-`%LOCALAPPDATA%\Visage\settings.json` sont importés dans
-`%LOCALAPPDATA%\Pastille\settings.json`. Le fichier de Visage est conservé sans modification.
+l'installation précédente sont importés une fois ; le fichier d'origine est conservé.
 Ensuite, les préférences Pastille sont prioritaires. Les anciens paramètres d'enregistrement
 sont ignorés. Aucun changement de vos vidéos existantes.
 
@@ -113,7 +118,7 @@ version publiée ; ils ne proviennent pas du runtime .NET installé séparément
   si vous n'êtes pas au centre du flux webcam.
 - Les autorisations se règlent dans **Paramètres > Confidentialité et sécurité > Caméra >
   Autoriser les applications de bureau**.
-- Si le raccourci est déjà utilisé (notamment par une ancienne instance de Visage ou Pastille), un message
+- Si le raccourci est déjà utilisé (notamment par une autre instance de Pastille), un message
   apparaît dans les commandes. Fermez l'application en conflit puis relancez Pastille.
   Le bouton et la case d'affichage restent utilisables. Le maintien des touches ne fait
   pas clignoter la pastille : la répétition du raccourci est désactivée.
@@ -162,6 +167,8 @@ de formatage dans les cinq langues, la sélection des variantes régionales, le 
 les cultures des tâches et le formatage des pourcentages. Les fenêtres WPF, menus de la pastille
 et commandes de l'icône sont exercés dans chaque langue et après repli anglais. Ces tests
 nécessitent un bureau Windows interactif et un dossier accessible en écriture pour les résultats.
+Ils vérifient aussi le fond vert initial et après arrêt de la webcam, l'effacement de la dernière
+image, l'affichage du flux actif et le découpage des deux formes avec le liseré.
 Les ressources standard `Strings*.resx` partagent les mêmes clés ; `Strings.resx` contient
 l'anglais par défaut et `Localization.cs` centralise les recherches XAML et C#.
 

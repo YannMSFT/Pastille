@@ -64,8 +64,6 @@ Autorisez les applications de bureau à accéder à la caméra dans les paramèt
   <data name="TrayInitError" xml:space="preserve"><value>Windows ne peut pas initialiser les commandes de l'icône Pastille.</value></data>
   <data name="TrayCreateError" xml:space="preserve"><value>Impossible de créer l'icône Pastille.</value></data>
   <data name="TrayRemoveError" xml:space="preserve"><value>Windows n'a pas confirmé la suppression de l'icône Pastille.</value></data>
-  <data name="Placeholder" xml:space="preserve"><value>PASTILLE
-Webcam arrêtée</value></data>
   <data name="ResizeTip" xml:space="preserve"><value>Glisser pour redimensionner</value></data>
   <data name="OverlayTitle" xml:space="preserve"><value>Pastille — webcam</value></data>
   <data name="ShowControls" xml:space="preserve"><value>Afficher les commandes</value></data>
