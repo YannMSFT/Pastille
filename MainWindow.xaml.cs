@@ -19,7 +19,7 @@ public partial class MainWindow : Window
     private HwndSource? hwndSource;
     private nint windowHandle;
     private TrayIcon? tray;
-    internal TrayIcon Tray => tray ?? throw new InvalidOperationException("L'icône Pastille n'est pas initialisée.");
+    internal TrayIcon Tray => tray ?? throw new InvalidOperationException(Localization.Text("TrayNotReady"));
 
     public MainWindow() : this(LoadSettings(), true) { }
 
@@ -51,9 +51,9 @@ public partial class MainWindow : Window
             if (!hotkeyRegistered)
             {
                 var error = Marshal.GetLastWin32Error();
-                HotkeyLabel.Text = "Raccourci Ctrl + Maj + F9 indisponible. Fermez l'autre instance de Pastille, l'ancienne application Visage ou l'application qui l'utilise, puis relancez Pastille. Le bouton d'affichage reste disponible.";
+                HotkeyLabel.Text = Localization.Text("HotkeyUnavailable");
                 HotkeyLabel.Foreground = Brushes.Firebrick;
-                App.Log(new Win32Exception(error, "Impossible d'enregistrer le raccourci global Ctrl + Maj + F9."));
+                App.Log(new Win32Exception(error, Localization.Text("HotkeyError")));
             }
         };
         StateChanged += (_, _) =>
@@ -77,7 +77,7 @@ public partial class MainWindow : Window
         if (started) return;
         started = true;
         new WindowInteropHelper(this).EnsureHandle();
-        tray = new TrayIcon(hwndSource ?? throw new InvalidOperationException("Fenêtre Windows indisponible."),
+        tray = new TrayIcon(hwndSource ?? throw new InvalidOperationException(Localization.Text("WindowUnavailable")),
             ShowControls, () => SetOverlayVisibility(!overlay.IsVisible), RequestExit, () => overlay.IsVisible,
             ex => { App.Report(ex); ShowControls(); });
         overlay.Show();
@@ -92,7 +92,7 @@ public partial class MainWindow : Window
         try { return Settings.Load(); }
         catch (Exception ex)
         {
-            App.Report(new InvalidOperationException("Les préférences n'ont pas pu être lues. Les valeurs par défaut seront utilisées.", ex));
+            App.Report(new InvalidOperationException(Localization.Text("SettingsReadError"), ex));
             return new Settings();
         }
     }
@@ -123,7 +123,7 @@ public partial class MainWindow : Window
         var devices = await Camera.DevicesAsync();
         CameraChoice.ItemsSource = devices;
         CameraChoice.SelectedItem = devices.FirstOrDefault(x => x.Id == previousCamera) ?? devices.FirstOrDefault();
-        if (devices.Count == 0) StatusLabel.Text = "Aucune webcam détectée. Branchez-la puis actualisez.";
+        if (devices.Count == 0) StatusLabel.Text = Localization.Text("NoCamera");
     }
 
     private async void RefreshClick(object sender, RoutedEventArgs e)
@@ -147,13 +147,13 @@ public partial class MainWindow : Window
                 camera = null;
                 await previous.DisposeAsync();
                 overlay.ClearFrame();
-                CameraButton.Content = "Activer la webcam";
-                StatusLabel.Text = "Webcam arrêtée.";
+                CameraButton.Content = Localization.Text("StartCamera");
+                StatusLabel.Text = Localization.Text("CameraStopped");
             }
             else
             {
                 if (CameraChoice.SelectedItem is not DeviceInformation device)
-                    throw new InvalidOperationException("Sélectionnez une webcam. Vérifiez aussi les autorisations dans Paramètres > Confidentialité et sécurité > Caméra.");
+                    throw new InvalidOperationException(Localization.Text("SelectCamera"));
                 var next = new Camera(Dispatcher);
                 next.Frame += overlay.ShowFrame;
                 next.Failed += CameraFailed;
@@ -161,15 +161,14 @@ public partial class MainWindow : Window
                 camera = next;
                 settings.CameraId = device.Id;
                 QueueSave();
-                CameraButton.Content = "Arrêter la webcam";
+                CameraButton.Content = Localization.Text("StopCamera");
                 SetOverlayVisibility(true);
-                StatusLabel.Text = "Webcam active.";
+                StatusLabel.Text = Localization.Text("CameraActive");
             }
         }
         catch (Exception ex)
         {
-            App.Report(new InvalidOperationException("Webcam : " + ex.Message +
-                "\nAutorisez les applications de bureau à accéder à la caméra dans les paramètres Windows.", ex));
+            App.Report(new InvalidOperationException(Localization.Format("CameraError", ex.Message), ex));
         }
         finally
         {
@@ -188,9 +187,9 @@ public partial class MainWindow : Window
         try { await failed.DisposeAsync(); }
         catch (Exception ex) { App.Log(ex); }
         overlay.ClearFrame();
-        CameraButton.Content = "Activer la webcam";
+        CameraButton.Content = Localization.Text("StartCamera");
         CameraChoice.IsEnabled = true;
-        App.Report(new InvalidOperationException("La webcam a été interrompue : " + message));
+        App.Report(new InvalidOperationException(Localization.Format("CameraInterrupted", message)));
     }
 
     private void ShapeChanged(object sender, RoutedEventArgs e)
@@ -230,7 +229,7 @@ public partial class MainWindow : Window
         try
         {
             if (!Settings.TryParseColor(settings.OutlineColor, out var initial))
-                throw new InvalidOperationException("Couleur du liseré invalide.");
+                throw new InvalidOperationException(Localization.Text("InvalidOutlineColor"));
             var color = Native.PickColor(this, initial);
             if (color is null) return;
             settings.OutlineColor = $"#{color.Value.R:X2}{color.Value.G:X2}{color.Value.B:X2}";
@@ -282,8 +281,8 @@ public partial class MainWindow : Window
         PanXSlider.Value = settings.PanX;
         PanYSlider.Value = settings.PanY;
         ZoomLabel.Text = $"{settings.Zoom:P0}";
-        PanXLabel.Text = settings.PanX == 0 ? "Centre" : $"{settings.PanX:+0%;-0%}";
-        PanYLabel.Text = settings.PanY == 0 ? "Centre" : $"{settings.PanY:+0%;-0%}";
+        PanXLabel.Text = Localization.FormatPan(settings.PanX);
+        PanYLabel.Text = Localization.FormatPan(settings.PanY);
         OutlineChoice.IsChecked = settings.OutlineEnabled;
         OutlineThicknessSlider.Value = settings.OutlineThickness;
         OutlineThicknessLabel.Text = $"{settings.OutlineThickness:0}";
@@ -310,7 +309,7 @@ public partial class MainWindow : Window
         if (visible) { overlay.Show(); overlay.KeepOnScreen(); }
         else { overlay.ContextMenu.IsOpen = false; overlay.Hide(); }
         VisibleChoice.IsChecked = visible;
-        ToggleVisibilityButton.Content = visible ? "Cacher la pastille" : "Afficher la pastille";
+        ToggleVisibilityButton.Content = Localization.Text(visible ? "HideOverlay" : "ShowOverlay");
         tray?.RefreshVisibility();
     }
 

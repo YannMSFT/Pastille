@@ -88,7 +88,7 @@ internal static class Native
             if (ChooseColor(ref dialog))
                 return Color.FromRgb((byte)dialog.Result, (byte)(dialog.Result >> 8), (byte)(dialog.Result >> 16));
             var error = CommDlgExtendedError();
-            if (error != 0) throw new Win32Exception((int)error, "Le sélecteur de couleur ne peut pas s'ouvrir.");
+            if (error != 0) throw new Win32Exception((int)error, Localization.Text("ColorDialogError"));
             return null;
         }
         finally { colors.Free(); }

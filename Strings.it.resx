@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="ConfigurationTitle" xml:space="preserve"><value>Pastille — impostazioni</value></data>
+  <data name="Tagline" xml:space="preserve"><value>La tua webcam, sopra le tue applicazioni.</value></data>
+  <data name="WebcamHeading" xml:space="preserve"><value>WEBCAM</value></data>
+  <data name="StartCamera" xml:space="preserve"><value>Attiva webcam</value></data>
+  <data name="StopCamera" xml:space="preserve"><value>Arresta webcam</value></data>
+  <data name="Refresh" xml:space="preserve"><value>Aggiorna</value></data>
+  <data name="Privacy" xml:space="preserve"><value>Nessuna immagine viene inviata su Internet.</value></data>
+  <data name="OverlayHeading" xml:space="preserve"><value>FINESTRA MOBILE</value></data>
+  <data name="Oval" xml:space="preserve"><value>Ovale</value></data>
+  <data name="Rectangle" xml:space="preserve"><value>Rettangolo</value></data>
+  <data name="Mirror" xml:space="preserve"><value>Effetto specchio</value></data>
+  <data name="Outline" xml:space="preserve"><value>Bordo</value></data>
+  <data name="ShowOutline" xml:space="preserve"><value>Mostra bordo</value></data>
+  <data name="Thickness" xml:space="preserve"><value>Spessore</value></data>
+  <data name="PickColor" xml:space="preserve"><value>Scegli colore…</value></data>
+  <data name="RectangleCorners" xml:space="preserve"><value>Angoli del rettangolo</value></data>
+  <data name="Radius" xml:space="preserve"><value>Raggio</value></data>
+  <data name="RadiusHelp" xml:space="preserve"><value>0: angoli retti. Disponibile in modalità Rettangolo. L'arrotondamento è limitato alla metà del lato più corto.</value></data>
+  <data name="Framing" xml:space="preserve"><value>Inquadratura del viso</value></data>
+  <data name="Zoom" xml:space="preserve"><value>Zoom</value></data>
+  <data name="Horizontal" xml:space="preserve"><value>Orizzontale</value></data>
+  <data name="Vertical" xml:space="preserve"><value>Verticale</value></data>
+  <data name="ResetFraming" xml:space="preserve"><value>Reimposta inquadratura</value></data>
+  <data name="FramingHelp" xml:space="preserve"><value>Lo zoom e l'inquadratura spostano l'immagine all'interno della finestra mobile senza spostare la finestra. Anche la rotellina del mouse sulla finestra regola lo zoom.</value></data>
+  <data name="OverlaySize" xml:space="preserve"><value>Dimensioni della finestra mobile</value></data>
+  <data name="Width" xml:space="preserve"><value>Larghezza</value></data>
+  <data name="Height" xml:space="preserve"><value>Altezza</value></data>
+  <data name="CenterOverlay" xml:space="preserve"><value>Centra finestra mobile</value></data>
+  <data name="ShowOverlay" xml:space="preserve"><value>Mostra finestra mobile</value></data>
+  <data name="HideOverlay" xml:space="preserve"><value>Nascondi finestra mobile</value></data>
+  <data name="MoveHelp" xml:space="preserve"><value>Trascina la finestra mobile per spostarla. Usa la maniglia inferiore per ridimensionarla. Fai doppio clic per aprire i controlli.</value></data>
+  <data name="DisplayHeading" xml:space="preserve"><value>VISUALIZZAZIONE</value></data>
+  <data name="Hotkey" xml:space="preserve"><value>Ctrl + Maiusc + F9: nascondi / mostra finestra mobile</value></data>
+  <data name="HotkeyHelp" xml:space="preserve"><value>Funziona dalle altre applicazioni anche con le impostazioni chiuse. La webcam resta attiva mentre la finestra mobile è nascosta.</value></data>
+  <data name="Ready" xml:space="preserve"><value>Pronto.</value></data>
+  <data name="TrayHelp" xml:space="preserve"><value>Pastille resta nell'area di notifica accanto all'orologio. Clic destro sull'icona: Impostazioni, mostra/nascondi finestra mobile, Esci. Chiudere questa finestra non chiude Pastille.</value></data>
+  <data name="CloseSettings" xml:space="preserve"><value>Chiudi impostazioni</value></data>
+  <data name="Footer" xml:space="preserve"><value>ARM64 / x64 nativo · webcam locale · nessuna registrazione o accesso al microfono</value></data>
+  <data name="ErrorTitle" xml:space="preserve"><value>Pastille — errore</value></data>
+  <data name="TrayNotReady" xml:space="preserve"><value>L'icona di Pastille non è stata inizializzata.</value></data>
+  <data name="HotkeyUnavailable" xml:space="preserve"><value>Ctrl + Maiusc + F9 non è disponibile. Chiudi l'altra istanza di Pastille, la vecchia applicazione Visage o l'applicazione che usa questa scorciatoia, quindi riavvia Pastille. Il pulsante di visibilità resta disponibile.</value></data>
+  <data name="HotkeyError" xml:space="preserve"><value>Impossibile registrare la scorciatoia globale Ctrl + Maiusc + F9.</value></data>
+  <data name="WindowUnavailable" xml:space="preserve"><value>Finestra Windows non disponibile.</value></data>
+  <data name="SettingsReadError" xml:space="preserve"><value>Impossibile leggere le preferenze. Verranno usati i valori predefiniti.</value></data>
+  <data name="NoCamera" xml:space="preserve"><value>Nessuna webcam rilevata. Collegane una, quindi aggiorna.</value></data>
+  <data name="CameraStopped" xml:space="preserve"><value>Webcam arrestata.</value></data>
+  <data name="SelectCamera" xml:space="preserve"><value>Seleziona una webcam. Controlla anche le autorizzazioni in Impostazioni &gt; Privacy e sicurezza &gt; Fotocamera.</value></data>
+  <data name="CameraActive" xml:space="preserve"><value>Webcam attiva.</value></data>
+  <data name="CameraError" xml:space="preserve"><value>Webcam: {0}
+Consenti alle app desktop di accedere alla fotocamera nelle impostazioni di Windows.</value></data>
+  <data name="CameraInterrupted" xml:space="preserve"><value>La webcam è stata interrotta: {0}</value></data>
+  <data name="InvalidOutlineColor" xml:space="preserve"><value>Colore del bordo non valido.</value></data>
+  <data name="Center" xml:space="preserve"><value>Centro</value></data>
+  <data name="Configure" xml:space="preserve"><value>Impostazioni…</value></data>
+  <data name="Quit" xml:space="preserve"><value>Esci da Pastille</value></data>
+  <data name="TrayTip" xml:space="preserve"><value>Pastille — clic destro: impostazioni / esci</value></data>
+  <data name="TrayAddError" xml:space="preserve"><value>Windows non può aggiungere l'icona di Pastille all'area di notifica.</value></data>
+  <data name="TrayInitError" xml:space="preserve"><value>Windows non può inizializzare i controlli dell'icona di Pastille.</value></data>
+  <data name="TrayCreateError" xml:space="preserve"><value>Impossibile creare l'icona di Pastille.</value></data>
+  <data name="TrayRemoveError" xml:space="preserve"><value>Windows non ha confermato la rimozione dell'icona di Pastille.</value></data>
+  <data name="Placeholder" xml:space="preserve"><value>PASTILLE
+Webcam arrestata</value></data>
+  <data name="ResizeTip" xml:space="preserve"><value>Trascina per ridimensionare</value></data>
+  <data name="OverlayTitle" xml:space="preserve"><value>Pastille — webcam</value></data>
+  <data name="ShowControls" xml:space="preserve"><value>Mostra controlli</value></data>
+  <data name="HideOverlayHotkey" xml:space="preserve"><value>Nascondi finestra mobile (Ctrl + Maiusc + F9)</value></data>
+  <data name="ToggleShape" xml:space="preserve"><value>Ovale / rettangolo</value></data>
+  <data name="NoColorStream" xml:space="preserve"><value>Questa webcam non fornisce un flusso video a colori compatibile.</value></data>
+  <data name="CameraStartError" xml:space="preserve"><value>Impossibile avviare la webcam: {0}.</value></data>
+  <data name="ColorDialogError" xml:space="preserve"><value>Impossibile aprire il selettore dei colori.</value></data>
+  <data name="ColorFormatError" xml:space="preserve"><value>Il colore del bordo deve essere nel formato #RRGGBB.</value></data>
+  <data name="EmptySettings" xml:space="preserve"><value>Il file delle preferenze è vuoto.</value></data>
+</root>

@@ -46,7 +46,7 @@ internal sealed class Settings
         OutlineThickness = double.IsFinite(OutlineThickness) ? Math.Clamp(OutlineThickness, 1, 20) : 2;
         CornerRadius = double.IsFinite(CornerRadius) ? Math.Clamp(CornerRadius, 0, 200) : 12;
         if (!TryParseColor(OutlineColor, out _))
-            throw new InvalidDataException("La couleur du liseré doit être au format #RRGGBB.");
+            throw new InvalidDataException(Localization.Text("ColorFormatError"));
     }
 
     public static Settings Load() => Load(DataDirectory, Path.Combine(
@@ -59,7 +59,7 @@ internal sealed class Settings
         if (migrating) path = Path.Combine(legacyDirectory, "settings.json");
         if (!File.Exists(path)) return new Settings();
         var result = JsonSerializer.Deserialize<Settings>(File.ReadAllText(path))
-            ?? throw new InvalidDataException("Le fichier de préférences est vide.");
+            ?? throw new InvalidDataException(Localization.Text("EmptySettings"));
         result.Normalize();
         if (migrating) result.Save(directory);
         return result;

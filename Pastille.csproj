@@ -10,6 +10,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <AssemblyName>Pastille</AssemblyName>
     <RootNamespace>Pastille</RootNamespace>
+    <NeutralLanguage>en</NeutralLanguage>
     <Product>Pastille</Product>
     <Title>Pastille</Title>
     <Version>0.5.2</Version>

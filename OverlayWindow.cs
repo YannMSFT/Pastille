@@ -16,8 +16,9 @@ internal sealed class OverlayWindow : Window
     private readonly Image image = new() { Stretch = Stretch.Fill };
     private readonly TextBlock placeholder = new()
     {
-        Text = "PASTILLE\nWebcam arrêtée", TextAlignment = TextAlignment.Center,
-        Foreground = Brushes.White, VerticalAlignment = VerticalAlignment.Center, FontSize = 17
+        Text = Localization.Text("Placeholder"), TextAlignment = TextAlignment.Center,
+        Foreground = Brushes.White, VerticalAlignment = VerticalAlignment.Center, FontSize = 17,
+        TextWrapping = TextWrapping.Wrap
     };
     private readonly Grid content = new() { Background = new SolidColorBrush(Color.FromRgb(28, 38, 48)) };
     private readonly Ellipse oval = new() { StrokeThickness = 2, IsHitTestVisible = false };
@@ -26,7 +27,7 @@ internal sealed class OverlayWindow : Window
     {
         Width = 32, Height = 14, HorizontalAlignment = HorizontalAlignment.Center,
         VerticalAlignment = VerticalAlignment.Bottom, Margin = new Thickness(0, 0, 0, 5),
-        Cursor = Cursors.SizeNWSE, Opacity = 0, ToolTip = "Glisser pour redimensionner"
+        Cursor = Cursors.SizeNWSE, Opacity = 0, ToolTip = Localization.Text("ResizeTip")
     };
     public event Action? Changed;
     public event Action? ShowControls;
@@ -42,7 +43,7 @@ internal sealed class OverlayWindow : Window
         ShowInTaskbar = false;
         ShowActivated = false;
         Topmost = true;
-        Title = "Pastille — webcam";
+        Title = Localization.Text("OverlayTitle");
         MinWidth = 120; MinHeight = 90;
         MaxWidth = 960; MaxHeight = 720;
         Left = settings.Left; Top = settings.Top;
@@ -56,15 +57,15 @@ internal sealed class OverlayWindow : Window
         surface.Children.Add(grip);
         Content = surface;
         var menu = new ContextMenu();
-        AddMenu(menu, "Afficher les commandes", () => ShowControls?.Invoke());
-        AddMenu(menu, "Cacher la pastille (Ctrl + Maj + F9)", () => HideRequested?.Invoke());
-        AddMenu(menu, "Ovale / rectangle", () =>
+        AddMenu(menu, Localization.Text("ShowControls"), () => ShowControls?.Invoke());
+        AddMenu(menu, Localization.Text("HideOverlayHotkey"), () => HideRequested?.Invoke());
+        AddMenu(menu, Localization.Text("ToggleShape"), () =>
         {
             settings.Oval = !settings.Oval;
             ApplyAppearance();
             Changed?.Invoke();
         });
-        AddMenu(menu, "Réinitialiser le cadrage", ResetFraming);
+        AddMenu(menu, Localization.Text("ResetFraming"), ResetFraming);
         ContextMenu = menu;
         content.MouseLeftButtonDown += (_, e) =>
         {
@@ -130,7 +131,7 @@ internal sealed class OverlayWindow : Window
         oval.Visibility = settings.OutlineEnabled && settings.Oval ? Visibility.Visible : Visibility.Collapsed;
         rectangle.Visibility = settings.OutlineEnabled && !settings.Oval ? Visibility.Visible : Visibility.Collapsed;
         if (!Settings.TryParseColor(settings.OutlineColor, out var color))
-            throw new InvalidOperationException("Couleur du liseré invalide.");
+            throw new InvalidOperationException(Localization.Text("InvalidOutlineColor"));
         oval.Stroke = rectangle.Stroke = new SolidColorBrush(color);
         oval.StrokeThickness = rectangle.StrokeThickness = settings.OutlineThickness;
     }

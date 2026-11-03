@@ -45,7 +45,7 @@ internal sealed class Camera : IAsyncDisposable
                 x.Info.SourceKind == MediaFrameSourceKind.Color &&
                 x.Info.MediaStreamType == MediaStreamType.VideoPreview)
                 ?? capture.FrameSources.Values.FirstOrDefault(x => x.Info.SourceKind == MediaFrameSourceKind.Color)
-                ?? throw new InvalidOperationException("Cette webcam ne fournit pas de flux vidéo couleur compatible.");
+                ?? throw new InvalidOperationException(Localization.Text("NoColorStream"));
             var format = source.CurrentFormat.VideoFormat;
             var scale = Math.Min(1, Math.Min(960d / format.Width, 720d / format.Height));
             reader = await capture.CreateFrameReaderAsync(source, MediaEncodingSubtypes.Bgra8,
@@ -58,7 +58,7 @@ internal sealed class Camera : IAsyncDisposable
             reader.FrameArrived += FrameArrived;
             var status = await reader.StartAsync();
             if (status != MediaFrameReaderStartStatus.Success)
-                throw new InvalidOperationException($"Impossible de démarrer la webcam : {status}.");
+                throw new InvalidOperationException(Localization.Format("CameraStartError", status));
         }
         catch
         {

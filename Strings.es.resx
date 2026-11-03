@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="ConfigurationTitle" xml:space="preserve"><value>Pastille — configuración</value></data>
+  <data name="Tagline" xml:space="preserve"><value>Tu cámara web, por encima de tus aplicaciones.</value></data>
+  <data name="WebcamHeading" xml:space="preserve"><value>CÁMARA WEB</value></data>
+  <data name="StartCamera" xml:space="preserve"><value>Activar cámara web</value></data>
+  <data name="StopCamera" xml:space="preserve"><value>Detener cámara web</value></data>
+  <data name="Refresh" xml:space="preserve"><value>Actualizar</value></data>
+  <data name="Privacy" xml:space="preserve"><value>No se envían imágenes por Internet.</value></data>
+  <data name="OverlayHeading" xml:space="preserve"><value>VENTANA FLOTANTE</value></data>
+  <data name="Oval" xml:space="preserve"><value>Óvalo</value></data>
+  <data name="Rectangle" xml:space="preserve"><value>Rectángulo</value></data>
+  <data name="Mirror" xml:space="preserve"><value>Efecto espejo</value></data>
+  <data name="Outline" xml:space="preserve"><value>Borde</value></data>
+  <data name="ShowOutline" xml:space="preserve"><value>Mostrar borde</value></data>
+  <data name="Thickness" xml:space="preserve"><value>Grosor</value></data>
+  <data name="PickColor" xml:space="preserve"><value>Elegir color…</value></data>
+  <data name="RectangleCorners" xml:space="preserve"><value>Esquinas del rectángulo</value></data>
+  <data name="Radius" xml:space="preserve"><value>Radio</value></data>
+  <data name="RadiusHelp" xml:space="preserve"><value>0: esquinas rectas. Disponible en modo Rectángulo. El redondeo se limita a la mitad del lado más corto.</value></data>
+  <data name="Framing" xml:space="preserve"><value>Encuadre del rostro</value></data>
+  <data name="Zoom" xml:space="preserve"><value>Zoom</value></data>
+  <data name="Horizontal" xml:space="preserve"><value>Horizontal</value></data>
+  <data name="Vertical" xml:space="preserve"><value>Vertical</value></data>
+  <data name="ResetFraming" xml:space="preserve"><value>Restablecer encuadre</value></data>
+  <data name="FramingHelp" xml:space="preserve"><value>El zoom y el encuadre desplazan la imagen dentro de la ventana flotante sin mover la ventana. La rueda del ratón sobre ella también ajusta el zoom.</value></data>
+  <data name="OverlaySize" xml:space="preserve"><value>Tamaño de la ventana flotante</value></data>
+  <data name="Width" xml:space="preserve"><value>Ancho</value></data>
+  <data name="Height" xml:space="preserve"><value>Alto</value></data>
+  <data name="CenterOverlay" xml:space="preserve"><value>Centrar ventana flotante</value></data>
+  <data name="ShowOverlay" xml:space="preserve"><value>Mostrar ventana flotante</value></data>
+  <data name="HideOverlay" xml:space="preserve"><value>Ocultar ventana flotante</value></data>
+  <data name="MoveHelp" xml:space="preserve"><value>Arrastra la ventana flotante para moverla. Usa el tirador inferior para cambiar su tamaño. Haz doble clic para abrir los controles.</value></data>
+  <data name="DisplayHeading" xml:space="preserve"><value>VISUALIZACIÓN</value></data>
+  <data name="Hotkey" xml:space="preserve"><value>Ctrl + Mayús + F9: ocultar / mostrar ventana flotante</value></data>
+  <data name="HotkeyHelp" xml:space="preserve"><value>Funciona desde otras aplicaciones, incluso con la configuración cerrada. La cámara sigue activa mientras la ventana flotante está oculta.</value></data>
+  <data name="Ready" xml:space="preserve"><value>Listo.</value></data>
+  <data name="TrayHelp" xml:space="preserve"><value>Pastille permanece en el área de notificación junto al reloj. Haz clic derecho en su icono para configurar, mostrar/ocultar la ventana flotante o salir. Cerrar esta ventana no cierra Pastille.</value></data>
+  <data name="CloseSettings" xml:space="preserve"><value>Cerrar configuración</value></data>
+  <data name="Footer" xml:space="preserve"><value>ARM64 / x64 nativo · cámara local · sin grabación ni acceso al micrófono</value></data>
+  <data name="ErrorTitle" xml:space="preserve"><value>Pastille — error</value></data>
+  <data name="TrayNotReady" xml:space="preserve"><value>El icono de Pastille no se ha inicializado.</value></data>
+  <data name="HotkeyUnavailable" xml:space="preserve"><value>Ctrl + Mayús + F9 no está disponible. Cierra la otra instancia de Pastille, la antigua aplicación Visage o la aplicación que usa este atajo y reinicia Pastille. El botón de visibilidad sigue disponible.</value></data>
+  <data name="HotkeyError" xml:space="preserve"><value>No se puede registrar el atajo global Ctrl + Mayús + F9.</value></data>
+  <data name="WindowUnavailable" xml:space="preserve"><value>La ventana de Windows no está disponible.</value></data>
+  <data name="SettingsReadError" xml:space="preserve"><value>No se pudieron leer las preferencias. Se usarán los valores predeterminados.</value></data>
+  <data name="NoCamera" xml:space="preserve"><value>No se detectó ninguna cámara web. Conecta una y actualiza.</value></data>
+  <data name="CameraStopped" xml:space="preserve"><value>Cámara web detenida.</value></data>
+  <data name="SelectCamera" xml:space="preserve"><value>Selecciona una cámara web. Comprueba también los permisos en Configuración &gt; Privacidad y seguridad &gt; Cámara.</value></data>
+  <data name="CameraActive" xml:space="preserve"><value>Cámara web activa.</value></data>
+  <data name="CameraError" xml:space="preserve"><value>Cámara web: {0}
+Permite que las aplicaciones de escritorio accedan a la cámara en la configuración de Windows.</value></data>
+  <data name="CameraInterrupted" xml:space="preserve"><value>Se interrumpió la cámara web: {0}</value></data>
+  <data name="InvalidOutlineColor" xml:space="preserve"><value>Color de borde no válido.</value></data>
+  <data name="Center" xml:space="preserve"><value>Centro</value></data>
+  <data name="Configure" xml:space="preserve"><value>Configuración…</value></data>
+  <data name="Quit" xml:space="preserve"><value>Salir de Pastille</value></data>
+  <data name="TrayTip" xml:space="preserve"><value>Pastille — clic derecho: configuración / salir</value></data>
+  <data name="TrayAddError" xml:space="preserve"><value>Windows no puede añadir el icono de Pastille al área de notificación.</value></data>
+  <data name="TrayInitError" xml:space="preserve"><value>Windows no puede inicializar los controles del icono de Pastille.</value></data>
+  <data name="TrayCreateError" xml:space="preserve"><value>No se puede crear el icono de Pastille.</value></data>
+  <data name="TrayRemoveError" xml:space="preserve"><value>Windows no confirmó la eliminación del icono de Pastille.</value></data>
+  <data name="Placeholder" xml:space="preserve"><value>PASTILLE
+Cámara web detenida</value></data>
+  <data name="ResizeTip" xml:space="preserve"><value>Arrastra para cambiar el tamaño</value></data>
+  <data name="OverlayTitle" xml:space="preserve"><value>Pastille — cámara web</value></data>
+  <data name="ShowControls" xml:space="preserve"><value>Mostrar controles</value></data>
+  <data name="HideOverlayHotkey" xml:space="preserve"><value>Ocultar ventana flotante (Ctrl + Mayús + F9)</value></data>
+  <data name="ToggleShape" xml:space="preserve"><value>Óvalo / rectángulo</value></data>
+  <data name="NoColorStream" xml:space="preserve"><value>Esta cámara web no ofrece un flujo de vídeo en color compatible.</value></data>
+  <data name="CameraStartError" xml:space="preserve"><value>No se puede iniciar la cámara web: {0}.</value></data>
+  <data name="ColorDialogError" xml:space="preserve"><value>No se puede abrir el selector de color.</value></data>
+  <data name="ColorFormatError" xml:space="preserve"><value>El color del borde debe tener el formato #RRGGBB.</value></data>
+  <data name="EmptySettings" xml:space="preserve"><value>El archivo de preferencias está vacío.</value></data>
+</root>
