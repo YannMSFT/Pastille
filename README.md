@@ -5,6 +5,8 @@ above your applications while presenting or working. Move and resize it, choose
 an oval or rounded rectangle, and adjust the framing without moving the window.
 It is a WPF/.NET 8 desktop application, with no embedded browser, server or FFmpeg.
 
+It's especially handy for recording a software demo with your face on screen,
+without the complexity of setting up a production tool like OBS Studio.
 Or simply enjoy admiring yourself while using your computer. We won't judge.
 
 The webcam stays on your PC. Pastille does not upload images, record video,
